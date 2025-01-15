@@ -1,29 +1,36 @@
 :host{
     .todo-home{ 
         display: flex;
-        flex: 1 1 auto;
-        height: 100%;
-        width: 100%;
         background-color: rgb(142, 141, 141);
-        padding: 2em 0em 0em 0em;
+        box-sizing: border-box;  
+        padding: 2rem 0 0 0;
+        height: 100vh;
 
         .left-menu{
             display: flex;
             width: 15%;
-            justify-content: center;
+            text-align: center;
+            justify-content: space-between;
+            flex-direction: column;
+
+            &__bottom{
+                display: flex;
+                justify-content: center;
+            }
+
         }      
         .main-box{
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             background-color: rgb(70, 69, 69);
             width: 85%;
             border-radius: 15px 0px 0px 0px;
-            padding: 2.5rem;
+            padding: 2rem;
 
             .header{
                 display: flex;
                 flex-direction: column;
-                height: 90%;
                 
                 &__title{
                     font-size: 1.5rem;
@@ -38,7 +45,6 @@
             
             .footer{
                 display: flex;
-                height: 10%;
             }
         }
     }  
