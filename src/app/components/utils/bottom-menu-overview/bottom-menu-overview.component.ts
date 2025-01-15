@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-bottom-menu-overview',
-  imports: [MatListModule],
+  imports: [MatListModule, MatIconModule],
   templateUrl: './bottom-menu-overview.component.html',
   styleUrl: './bottom-menu-overview.component.scss'
 })

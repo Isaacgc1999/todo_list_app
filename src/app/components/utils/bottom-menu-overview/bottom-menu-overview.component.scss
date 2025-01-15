@@ -1,0 +1,35 @@
+.bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__element{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+        gap: 20px;
+
+        &__icon{
+            width: 15px;
+            height: 15px;
+            color: black;
+        }
+    }
+
+    mat-nav-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 20px;  
+    }
+
+    .mdc-list-item__content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
