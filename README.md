@@ -1,59 +1,134 @@
-# TodoListApp
+📝 **To-Do List App**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+A simple but powerful Angular 19 to-do list application for managing daily tasks. 🚀 <br>
 
-## Development server
+-------------------------------------------------------------------------------------------------------------------------------
 
-To start a local development server, run:
+📸 **Screenshots** <br>
 
-```bash
-ng serve
+-------------------------------------------------------------------------------------------------------------------------------
+
+🖼️ **GIFS** <br>
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+📚 **Project Description**
+
+This application allows users to create, complete, and delete tasks. Users can mark tasks as completed, and the list stays organized and up-to-date.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+⚙️ **Key Features**<br>
+
+✅ Add tasks with a simple form.
+
+🔄 Toggle task status (completed or pending).
+
+🗑️ Delete tasks easily.
+
+🔍 Optional filters to display pending, completed, or all tasks.
+
+💾 Local storage persistence to save tasks between sessions. <br>
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+🚀 **Technologies Used**
+
+#### Frontend: Angular 19 (Standalone Components)
+
+#### Styling: SCSS(SASS) / Angular Material
+
+Additional Libraries: <br>
+
+rxjs for reactive state management.
+
+HttpClient for mock data handling. <br>
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+📂 **Project Structure**
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── todo-item/  # Component for individual tasks
+│   │   └── todo-list/  # Component to list all tasks
+│   ├── services/
+│   │   └── todo.service.ts  # Logic for managing tasks
+│   ├── models/
+│   │   └── todo.model.ts  # Interface for tasks
+│   └── app.component.ts  # Main app component
+└── main.ts  # App bootstrap 
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+-------------------------------------------------------------------------------------------------------------------------------
 
-## Code scaffolding
+🚀 **Installation and Setup** <br>
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Clone the repository
+   
+- #### git clone https://github.com/your-username/todo_list.git
 
-```bash
-ng generate component component-name
-```
+-  #### cd todo_list
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Install dependencies
+   
+- #### npm install
 
-```bash
-ng generate --help
-```
+5. Run the application
+   
+- #### ng serve --open <br>
 
-## Building
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
-To build the project run:
+📈 **Future Enhancements (Roadmap)** <br>
 
-```bash
-ng build
-```
+🔧 User authentication to save personalized tasks.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+🌗 Dark mode for better accessibility.
 
-## Running unit tests
+📱 Responsive design for mobile devices. <br>
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
-```bash
-ng test
-```
+🤝 **Contributions** <br>
 
-## Running end-to-end tests
+Contributions are welcome! <br>
 
-For end-to-end (e2e) testing, run:
+To contribute:
 
-```bash
-ng e2e
-```
+- #### Fork the repository.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- #### Create a new branch: git checkout -b feature/new-feature.
 
-## Additional Resources
+- #### Make your changes and commit: git commit -m "Description of the new feature".
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- #### Push your changes: git push origin feature/new-feature.
+
+- #### Create a Pull Request. <br>
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+📄 **License**
+
+This project is licensed under the Creative Commons License. <br>
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+👨‍💻 **Contact** <br>
+
+
+
+
+
+
+Developer: Isaac García
+
+📧 Email: isaactraba@gmail.com
