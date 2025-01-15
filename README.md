@@ -1,4 +1,4 @@
-📝 To-Do List App
+📝 # **To-Do List App**
 A simple but powerful Angular 19 to-do list application for managing daily tasks. 🚀
 
 📸 Screenshots
