@@ -1,6 +1,6 @@
 <div class="bottom">
     <mat-nav-list>
-        <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
+        <a mat-list-item (click)="toggleDarkMode($event)">
             <div class="bottom__element">
             <div class="bottom__element__icon">
                 <img src="/moon.png" width="25px" height="25px" alt="laptop" />
@@ -11,7 +11,7 @@
             </div>
         </a>
     
-        <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
+        <a mat-list-item (click)="toggleDarkMode($event)">
             <div class="bottom__element">
                 <div class="bottom__element__icon">
                     <img src="/sun.png" width="25px" height="25px" alt="laptop" />

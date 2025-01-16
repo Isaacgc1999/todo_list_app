@@ -1,7 +1,7 @@
 :host{
     .todo-home{ 
         display: flex;
-        background-color: rgb(142, 141, 141);
+        background-color: var(--navmenu-color-light-mode);
         box-sizing: border-box;  
         padding: 2rem 0 0 0;
         height: 100vh;
@@ -23,7 +23,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background-color: rgb(70, 69, 69);
+            background-color: var(--main-color-light-mode);
             width: 85%;
             border-radius: 15px 0px 0px 0px;
             padding: 2rem;

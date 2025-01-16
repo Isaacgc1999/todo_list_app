@@ -1,22 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'colors/colors.scss';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', sans-serif; }
 
 h1, h2, h3 {
     font-weight: 600;
-}
-
-:root {
-    --background-color: #ffffff;
-    --text-color: #000000;
-    --primary-color: #6200ee;
-}
-
-.dark-mode {
-    --background-color: #121212;
-    --text-color: #ffffff;
-    --primary-color: #bb86fc;
 }
 
 body {

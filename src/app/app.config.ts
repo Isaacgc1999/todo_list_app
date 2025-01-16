@@ -4,7 +4,11 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DatePipe } from '@angular/common';
+import { BottomMenuOverviewComponent } from './components/utils/bottom-menu-overview/bottom-menu-overview.component';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), DatePipe]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    DatePipe, BottomMenuOverviewComponent]
 };

@@ -10,6 +10,7 @@
         align-items: center;  
         width: 100%; 
         background-color: none;
+        background-color: var(--main-color-light-mode);
 
         mat-icon {
             display: flex;
@@ -18,7 +19,7 @@
             font-size: 28px;
             width: 50px; 
             height: 50px; 
-            color: black;
+            color: var(--app-black-color);
             margin: 0;
         } 
     }   
