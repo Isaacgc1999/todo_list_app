@@ -26,9 +26,9 @@ This application allows users to create, complete, and delete tasks. Users can m
 
 🗑️ Delete tasks easily.
 
-🔍 Optional filters to display pending, completed, or all tasks.
-
 💾 Local storage persistence to save tasks between sessions. <br>
+
+🌗 Dark / Light mode using a simple button.
 
 -------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ src/
 
 🔧 User authentication to save personalized tasks.
 
-🌗 Dark mode for better accessibility.
+🔍 Optional filters to display pending, completed, or all tasks. 
 
 📱 Responsive design for mobile devices. <br>
 
