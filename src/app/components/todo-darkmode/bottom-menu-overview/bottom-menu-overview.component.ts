@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 @Component({
   selector: 'app-bottom-menu-overview',
   imports: [MatListModule, MatIconModule],
+  standalone: true,
   templateUrl: './bottom-menu-overview.component.html',
   styleUrl: './bottom-menu-overview.component.scss',
 })
@@ -13,6 +14,7 @@ export class BottomMenuOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     const savedMode = localStorage.getItem('theme');
+
     if (savedMode === 'dark' || savedMode === 'light') {
       this.currentMode = savedMode;
     } else {

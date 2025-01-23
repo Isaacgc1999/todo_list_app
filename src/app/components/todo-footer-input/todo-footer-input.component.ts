@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     ReactiveFormsModule,
   ],
+  standalone: true,
   templateUrl: './todo-footer-input.component.html',
   styleUrl: './todo-footer-input.component.scss',
 })

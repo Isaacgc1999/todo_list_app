@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BottomMenuOverviewComponent } from './components/utils/bottom-menu-overview/bottom-menu-overview.component';
+import { BottomMenuOverviewComponent } from './components/todo-darkmode/bottom-menu-overview/bottom-menu-overview.component';
 
 @Component({
   selector: 'app-root',

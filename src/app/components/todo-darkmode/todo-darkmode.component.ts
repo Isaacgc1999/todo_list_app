@@ -5,11 +5,12 @@ import {
 } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BottomMenuOverviewComponent } from '../utils/bottom-menu-overview/bottom-menu-overview.component';
+import { BottomMenuOverviewComponent } from './bottom-menu-overview/bottom-menu-overview.component';
 
 @Component({
   selector: 'app-todo-darkmode',
   imports: [MatIconModule, MatButtonModule, MatBottomSheetModule],
+  standalone: true,
   templateUrl: './todo-darkmode.component.html',
   styleUrl: './todo-darkmode.component.scss',
 })

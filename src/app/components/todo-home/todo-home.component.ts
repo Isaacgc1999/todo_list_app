@@ -5,13 +5,8 @@ import { TodoFooterInputComponent } from '../todo-footer-input/todo-footer-input
 
 @Component({
   selector: 'app-todo-home',
-  imports: [
-    DatePipe,
-    TodoDarkmodeComponent,
-    TodoDarkmodeComponent,
-    TodoFooterInputComponent,
-    TodoFooterInputComponent,
-  ],
+  imports: [DatePipe, TodoDarkmodeComponent, TodoFooterInputComponent],
+  providers: [DatePipe],
   templateUrl: './todo-home.component.html',
   styleUrl: './todo-home.component.scss',
   standalone: true,
