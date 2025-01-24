@@ -4,7 +4,6 @@ import { provideRouter } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
-import { BottomMenuOverviewComponent } from './components/todo-darkmode/bottom-menu-overview/bottom-menu-overview.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +11,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     DatePipe,
-    BottomMenuOverviewComponent,
   ],
 };

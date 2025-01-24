@@ -6,10 +6,10 @@ import { TodoFooterInputComponent } from '../todo-footer-input/todo-footer-input
 @Component({
   selector: 'app-todo-home',
   imports: [DatePipe, TodoDarkmodeComponent, TodoFooterInputComponent],
+  standalone: true,
   providers: [DatePipe],
   templateUrl: './todo-home.component.html',
   styleUrl: './todo-home.component.scss',
-  standalone: true,
 })
 export class TodoHomeComponent {
   currentDateAndTime: string | null = null;
