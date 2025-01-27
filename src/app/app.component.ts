@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BottomMenuOverviewComponent } from './components/todo-darkmode/bottom-menu-overview/bottom-menu-overview.component';
+import { ThemeService } from './services/theme-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,7 @@ import { BottomMenuOverviewComponent } from './components/todo-darkmode/bottom-m
 export class AppComponent {
   title = 'todo-list-app';
 
-  constructor(darkMenuOption: BottomMenuOverviewComponent) {
-    const savedMode = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    const mode: 'dark' | 'light' =
-      savedMode === 'dark' || savedMode === 'light' ? savedMode : 'light';
-
-    darkMenuOption.applyTheme(mode);
+  constructor(public themeService: ThemeService) {
+    this.themeService.initializeTheme();
   }
 }

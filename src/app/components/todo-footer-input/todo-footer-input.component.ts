@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TodoInputBarComponent } from '../utils/todo-input-bar/todo-input-bar.component';
 
 @Component({
   selector: 'app-todo-footer-input',
@@ -12,11 +13,10 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    TodoInputBarComponent,
   ],
   standalone: true,
   templateUrl: './todo-footer-input.component.html',
   styleUrl: './todo-footer-input.component.scss',
 })
-export class TodoFooterInputComponent {
-  todoFormControl = new FormControl('');
-}
+export class TodoFooterInputComponent {}

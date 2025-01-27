@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { ThemeService } from '../../../services/theme-service.service';
 
 @Component({
   selector: 'app-bottom-menu-overview',
@@ -9,38 +10,13 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './bottom-menu-overview.component.html',
   styleUrl: './bottom-menu-overview.component.scss',
 })
-export class BottomMenuOverviewComponent implements OnInit {
-  currentMode: 'dark' | 'light' = 'light';
-
-  ngOnInit(): void {
-    const savedMode = localStorage.getItem('theme');
-
-    if (savedMode === 'dark' || savedMode === 'light') {
-      this.currentMode = savedMode;
-    } else {
-      this.currentMode = 'light';
-    }
-    this.applyTheme(this.currentMode);
-  }
+export class BottomMenuOverviewComponent {
+  constructor(public themeService: ThemeService) {}
 
   toggleDarkMode(event: Event): void {
     const clickedElement = (event.target as HTMLElement).innerText
       .trim()
-      .toLowerCase();
-    this.currentMode = clickedElement === 'dark' ? 'dark' : 'light';
-
-    this.applyTheme(this.currentMode);
-
-    localStorage.setItem('theme', this.currentMode);
-  }
-
-  applyTheme(mode: 'dark' | 'light'): void {
-    if (mode === 'dark') {
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
-    } else {
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
-    }
+      .toLowerCase() as 'dark' | 'light';
+    this.themeService.setTheme(clickedElement);
   }
 }
