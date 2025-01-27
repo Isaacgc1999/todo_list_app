@@ -17,8 +17,7 @@
     <input type="text" matInput formControlName="task" class="todo-input-bar__input" placeholder="Ex. games to play"
       aria-label="Add a task" />
   </mat-form-field>
-  <button mat-raised-button color="primary" class="todo-input-bar__button" [disabled]="!todoForm.valid"
-    aria-label="Add task">
+  <button mat-raised-button class="todo-input-bar__button" [disabled]="!todoForm.valid" aria-label="Add task">
     <mat-icon>add</mat-icon>
   </button>
 </form>

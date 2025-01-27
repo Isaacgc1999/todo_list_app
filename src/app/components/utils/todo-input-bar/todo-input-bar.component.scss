@@ -5,11 +5,17 @@
 
   &__form-field {
     flex: 1;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 
   &__input {
-    display: flex;
     margin: 0;
+  }
+
+  ::ng-deep {
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: var(--navmenu-color-light-mode);
+    }
   }
 
   button {
@@ -17,5 +23,8 @@
     align-items: center;
     justify-content: center;
     min-width: 56px;
+    background-color: var(--app-add-task-button-color);
+    color: var(--white-pure);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   }
 }
