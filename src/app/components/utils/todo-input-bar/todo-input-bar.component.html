@@ -1,15 +1,24 @@
-<div class="todo-input-bar">
+<!-- <form class="todo-input-bar">
   <div class="todo-input-bar__input">
-    <input type="text" class="todo-input-bar__input__input" placeholder="Add a tasks" />
+    <mat-form-field class="footer-input__form__field">
+      <mat-label>Add a task</mat-label>
+      <input type="text" matInput [formControl]="todoFormControl" class="todo-input-bar__input__input"
+        placeholder="Ex. List of games to play" />
+    </mat-form-field>
   </div>
   <div class="todo-input-bar__button">
     <button class="todo-input-bar__button__button">Add</button>
   </div>
-</div>
-
-<!-- <form class="footer-input__form">
-  <mat-form-field class="footer-input__form__field">
-    <mat-label>Add a tasks</mat-label>
-    <input type=" text" matInput [formControl]="todoFormControl" placeholder="Ex. List of games to play">
-  </mat-form-field>
 </form> -->
+
+<form class="todo-input-bar" [formGroup]="todoForm" (ngSubmit)="addTask()">
+  <mat-form-field class="todo-input-bar__form-field">
+    <mat-label>Add a task</mat-label>
+    <input type="text" matInput formControlName="task" class="todo-input-bar__input" placeholder="Ex. games to play"
+      aria-label="Add a task" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="todo-input-bar__button" [disabled]="!todoForm.valid"
+    aria-label="Add task">
+    <mat-icon>add</mat-icon>
+  </button>
+</form>
