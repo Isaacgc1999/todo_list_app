@@ -1,1 +1,9 @@
-<p>todo-list works!</p>
+<div class="todo-list">
+  @for(task of tasks; track task.taskName){
+  <app-todo-item></app-todo-item>
+  {{task.taskName}}
+  }
+  <!-- [task]="task"
+(deleteTask)="deleteTask($event)"
+  (updateTask)="updateTask($event)"> -->
+</div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -26,7 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class TodoInputBarComponent {
   todoForm: FormGroup;
-  @Output() task: string = '';
+  @Output() task = new EventEmitter<string>();
 
   constructor(private fb: FormBuilder) {
     this.todoForm = this.fb.group({
@@ -36,7 +36,7 @@ export class TodoInputBarComponent {
 
   addTask(): void {
     if (this.todoForm.valid) {
-      this.task = this.todoForm.value.task;
+      this.task.emit(this.todoForm.value.task);
       console.log('Task added:', this.task);
       this.todoForm.reset();
     }
