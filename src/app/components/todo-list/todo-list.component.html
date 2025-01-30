@@ -1,7 +1,6 @@
 <div class="todo-list">
   @for(task of tasks; track task.taskName){
-  <app-todo-item></app-todo-item>
-  {{task.taskName}}
+  <app-todo-item [task]="task.taskName"></app-todo-item>
   }
   <!-- [task]="task"
 (deleteTask)="deleteTask($event)"

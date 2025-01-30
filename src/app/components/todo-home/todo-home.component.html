@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="body">
-            <app-todo-list></app-todo-list>
+            <app-todo-list [tasks]="tasks"></app-todo-list>
         </div>
         <div class="footer">
             <app-todo-footer-input (task)="getTask($event)"></app-todo-footer-input>

@@ -37,7 +37,6 @@ export class TodoInputBarComponent {
   addTask(): void {
     if (this.todoForm.valid) {
       this.task.emit(this.todoForm.value.task);
-      console.log('Task added:', this.task);
       this.todoForm.reset();
     }
   }

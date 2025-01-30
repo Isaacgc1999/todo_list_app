@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
@@ -9,36 +9,14 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
   standalone: true,
 })
 export class TodoListComponent {
-  tasks = [
-    {
-      id: 1,
-      taskName: 'Learn Angular',
-      completed: false,
-    },
-    {
-      id: 2,
-      taskName: 'Learn React',
-      completed: false,
-    },
-    {
-      id: 3,
-      taskName: 'Learn Vue',
-      completed: false,
-    },
-  ];
+  @Input() tasks: { id: number; taskName: string; completed: boolean }[] = [];
 
   constructor() {}
 
-  addTask(task: string): void {
-    this.tasks.push({
-      id: this.tasks.length + 1,
-      taskName: task,
-      completed: false,
-    });
-  }
-
   deleteTask(id: number): void {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   toggleTask(id: number): void {

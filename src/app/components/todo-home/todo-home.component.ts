@@ -19,13 +19,27 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 })
 export class TodoHomeComponent {
   currentDateAndTime: string | null = null;
-  task: string | null = null;
+  tasks: { id: number; taskName: string; completed: boolean }[] = [];
 
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
+
+    //to preserve tasks on page reload
+    const storedTasks = localStorage.getItem('tasks');
+    this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
   }
 
   getTask(event: string): void {
-    this.task = event;
+    let lastId = localStorage.getItem('lastTaskId');
+    let newId = lastId ? parseInt(lastId, 10) + 1 : 1;
+    const newTask = {
+      id: newId,
+      taskName: event,
+      completed: false,
+    };
+
+    this.tasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem('lastTaskId', newId.toString());
   }
 }
