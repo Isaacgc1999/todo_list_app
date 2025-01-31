@@ -18,11 +18,15 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
   styleUrl: './todo-home.component.scss',
 })
 export class TodoHomeComponent {
+  currentMode: string | null = localStorage.getItem('theme');
   currentDateAndTime: string | null = null;
   tasks: { id: number; taskName: string; completed: boolean }[] = [];
+  completed_tasks: { id: number; taskName: string; completed: boolean }[] = [];
 
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
+
+    //localStorage.removeItem('tasks');
 
     //to preserve tasks on page reload
     const storedTasks = localStorage.getItem('tasks');
