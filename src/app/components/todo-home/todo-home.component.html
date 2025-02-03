@@ -1,8 +1,13 @@
 <div class="todo-home">
     <div class="left-menu">
         <div class="left-menu__top">
-            <div class="left-menu__top__img">
-                <img src="/favicon.ico" alt="logo" width="100" height="100" />
+            <div class="left-menu__header">
+                <div class="left-menu__header__title">
+                    My Todo List
+                </div>
+                <div class="left-menu__header__date">
+                    {{currentDateAndTime | date : 'EEEE d MMMM' }}
+                </div>
             </div>
         </div>
         <div class="left-menu__bottom">
@@ -10,16 +15,15 @@
         </div>
     </div>
     <div class="main-box">
-        <div class="header">
-            <div class="header__title">
-                My Todo List
+        <div class="main-box__group">
+            <div class="body">
+                <div class="body__tasks">
+                    <app-todo-list [tasks]="tasks"></app-todo-list>
+                </div>
+                <div class="body__tasks-completed">
+                    <app-todo-list [tasks]="completed_tasks"></app-todo-list>
+                </div>
             </div>
-            <div class="header__date">
-                {{currentDateAndTime | date : 'EEEE d MMMM' }}
-            </div>
-        </div>
-        <div class="body">
-            <app-todo-list [tasks]="tasks"></app-todo-list>
         </div>
         <div class="footer">
             <app-todo-footer-input (task)="getTask($event)"></app-todo-footer-input>
