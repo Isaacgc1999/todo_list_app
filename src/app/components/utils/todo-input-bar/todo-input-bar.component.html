@@ -1,16 +1,3 @@
-<!-- <form class="todo-input-bar">
-  <div class="todo-input-bar__input">
-    <mat-form-field class="footer-input__form__field">
-      <mat-label>Add a task</mat-label>
-      <input type="text" matInput [formControl]="todoFormControl" class="todo-input-bar__input__input"
-        placeholder="Ex. List of games to play" />
-    </mat-form-field>
-  </div>
-  <div class="todo-input-bar__button">
-    <button class="todo-input-bar__button__button">Add</button>
-  </div>
-</form> -->
-
 <form class="todo-input-bar" [formGroup]="todoForm" (ngSubmit)="addTask()">
   <mat-form-field class="todo-input-bar__form-field">
     <mat-label>Add a task</mat-label>

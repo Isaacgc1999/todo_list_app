@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
@@ -9,19 +9,12 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
   standalone: true,
 })
 export class TodoListComponent {
-  @Input() tasks: { id: number; taskName: string; completed: boolean }[] = [];
+  @Input() tasks: { id: number; taskName: string }[] = [];
+  @Output() taskChecked = new EventEmitter<{ id: number; taskName: string }>();
 
   constructor() {}
 
-  deleteTask(id: number): void {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-  }
-
-  toggleTask(id: number): void {
-    this.tasks = this.tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    );
+  onTaskToggled(task: { id: number; taskName: string }): void {
+    this.taskChecked.emit(task);
   }
 }

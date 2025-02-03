@@ -1,8 +1,5 @@
 <div class="todo-list">
-  @for(task of tasks; track task.taskName){
-  <app-todo-item [task]="task.taskName"></app-todo-item>
+  @for(task of tasks; track task.id){
+  <app-todo-item [task]="task" (taskChecked)="onTaskToggled($event)"></app-todo-item>
   }
-  <!-- [task]="task"
-(deleteTask)="deleteTask($event)"
-  (updateTask)="updateTask($event)"> -->
 </div>

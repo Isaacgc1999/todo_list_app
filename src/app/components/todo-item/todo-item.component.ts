@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,5 +11,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   standalone: true,
 })
 export class TodoItemComponent {
-  @Input() task: string | null = null;
+  @Input() task!: { id: number; taskName: string };
+  @Output() taskChecked = new EventEmitter<{ id: number; taskName: string }>();
+
+  onCheckboxChange(): void {
+    console.log('Task with id ' + this.task.id + ' was completed');
+    this.taskChecked.emit(this.task);
+  }
+
+  onCardClick(): void {
+    console.log('Task with id ' + this.task.id + ' was clicked');
+  }
 }

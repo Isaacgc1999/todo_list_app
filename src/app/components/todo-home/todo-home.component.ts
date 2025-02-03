@@ -18,19 +18,21 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
   styleUrl: './todo-home.component.scss',
 })
 export class TodoHomeComponent {
-  currentMode: string | null = localStorage.getItem('theme');
   currentDateAndTime: string | null = null;
-  tasks: { id: number; taskName: string; completed: boolean }[] = [];
-  completed_tasks: { id: number; taskName: string; completed: boolean }[] = [];
+  tasks: { id: number; taskName: string }[] = [];
+  completed_tasks: { id: number; taskName: string }[] = [];
 
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
 
-    //localStorage.removeItem('tasks');
-
     //to preserve tasks on page reload
     const storedTasks = localStorage.getItem('tasks');
+    const storedCompletedTasks = localStorage.getItem('completed_tasks');
+
     this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+    this.completed_tasks = storedCompletedTasks
+      ? JSON.parse(storedCompletedTasks)
+      : [];
   }
 
   getTask(event: string): void {
@@ -39,11 +41,21 @@ export class TodoHomeComponent {
     const newTask = {
       id: newId,
       taskName: event,
-      completed: false,
     };
 
     this.tasks.push(newTask);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     localStorage.setItem('lastTaskId', newId.toString());
+  }
+
+  currentTaskChecked(task: { id: number; taskName: string }): void {
+    this.tasks = this.tasks.filter((t) => t.id !== task.id);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+
+    this.completed_tasks.push(task);
+    localStorage.setItem(
+      'completed_tasks',
+      JSON.stringify(this.completed_tasks)
+    );
   }
 }

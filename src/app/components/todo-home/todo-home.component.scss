@@ -21,7 +21,7 @@
         &__title {
           font-size: 1.7rem;
           font-weight: 900;
-          margin-bottom: 0.4rem;
+          // margin-bottom: 0.4rem;
           font-family: "Pacifico", cursive;
         }
 
@@ -52,19 +52,50 @@
         gap: 0.8rem;
 
         .body {
-          width: 100%;
-          height: 44vh;
-          overflow-y: scroll;
-          scrollbar-color: var(--app-task-container-color) transparent;
-          padding-right: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+          &__tasks {
+            width: 100%;
+            height: 42.5vh;
+            overflow-y: scroll;
+            scrollbar-color: var(--navmenu-color-light-mode) transparent;
+            background-color: var(--navmenu-color-light-mode);
+            border-radius: 15px;
 
-          &::-webkit-scrollbar-thumb {
-            background: var(--app-task-container-color);
-            border-radius: 10px;
+            &::-webkit-scrollbar-thumb {
+              background: var(--navmenu-color-light-mode);
+              border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+              background: transparent;
+            }
           }
 
-          &::-webkit-scrollbar-track {
-            background: transparent;
+          &__completed {
+            background-color: var(--navmenu-color-light-mode);
+            border-radius: 15px;
+            &__header {
+              font-size: 1.7rem;
+              font-weight: 900;
+            }
+            &__tasks {
+              width: 100%;
+              height: 42.5vh;
+              overflow-y: scroll;
+              scrollbar-color: var(--navmenu-color-light-mode) transparent;
+              padding-right: 10px;
+
+              &::-webkit-scrollbar-thumb {
+                background: var(--navmenu-color-light-mode);
+                border-radius: 10px;
+              }
+
+              &::-webkit-scrollbar-track {
+                background: transparent;
+              }
+            }
           }
         }
       }

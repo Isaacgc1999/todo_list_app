@@ -18,15 +18,19 @@
         <div class="main-box__group">
             <div class="body">
                 <div class="body__tasks">
-                    <app-todo-list [tasks]="tasks"></app-todo-list>
+                    <app-todo-list [tasks]="tasks" (taskChecked)="currentTaskChecked($event)"></app-todo-list>
                 </div>
-                <div class="body__tasks-completed">
-                    <app-todo-list [tasks]="completed_tasks"></app-todo-list>
+                <div class="body__completed">
+                    <div class="body__completed__header">
+                        Completed Tasks
+                    </div>
+                    <div class="body__completed__tasks">
+                        <app-todo-list [tasks]="completed_tasks"></app-todo-list>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer">
-            <app-todo-footer-input (task)="getTask($event)"></app-todo-footer-input>
+            <div class="footer">
+                <app-todo-footer-input (task)="getTask($event)"></app-todo-footer-input>
+            </div>
         </div>
     </div>
-</div>
