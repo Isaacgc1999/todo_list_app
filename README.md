@@ -1,4 +1,4 @@
-📝 **To-Do List App**
+📝 **To-Do List App (IN PROGRESS)**
 
 A simple but powerful Angular 19 to-do list application for managing daily tasks. 🚀 <br>
 
@@ -14,17 +14,14 @@ A simple but powerful Angular 19 to-do list application for managing daily tasks
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-🖼️ **GIFS** <br>
-
--------------------------------------------------------------------------------------------------------------------------------
-
 📚 **Project Description**
 
 This application allows users to create, complete, and delete tasks. Users can mark tasks as completed, and the list stays organized and up-to-date.
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-⚙️ **Key Features**<br>
+⚙️ **Key Features
+**<br>
 
 ✅ Add tasks with a simple form.
 
