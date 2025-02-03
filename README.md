@@ -8,6 +8,9 @@ A simple but powerful Angular 19 to-do list application for managing daily tasks
 
 ![image](https://github.com/user-attachments/assets/3d3c2bb8-8042-493e-a646-011b4f295a90)
 
+![image](https://github.com/user-attachments/assets/cc402add-c260-45d8-bf05-b75b96545963)
+
+
 
 -------------------------------------------------------------------------------------------------------------------------------
 
