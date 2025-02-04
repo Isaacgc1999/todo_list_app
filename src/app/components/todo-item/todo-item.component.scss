@@ -22,6 +22,11 @@
       padding: 0.5rem;
       cursor: pointer;
 
+      :hover {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+      }
+
       mat-icon {
         color: var(--app-delete-task-button-color);
       }
