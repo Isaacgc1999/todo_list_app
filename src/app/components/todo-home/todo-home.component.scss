@@ -4,7 +4,7 @@
     background-color: var(--navmenu-color-light-mode);
     box-sizing: border-box;
     padding: 2rem 0 0 0;
-    height: 100vh;
+    height: 100%;
 
     .left-menu {
       display: flex;
@@ -41,6 +41,7 @@
       flex-direction: column;
       justify-content: space-between;
       background-color: var(--main-color-light-mode);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
       width: 85%;
       border-radius: 15px 0px 0px 0px;
       padding: 2rem 2rem 0.75rem 2rem;
@@ -55,17 +56,21 @@
           display: flex;
           flex-direction: column;
           gap: 0.8rem;
+          height: 80vh;
+
           &__tasks {
-            width: 100%;
-            height: 42.5vh;
-            overflow-y: scroll;
-            scrollbar-color: var(--navmenu-color-light-mode) transparent;
+            height: 45vh;
+            box-sizing: border-box;
+            overflow-y: auto;
+            scrollbar-width: none;
+
             background-color: var(--navmenu-color-light-mode);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             border-radius: 15px;
+            padding: 20px;
 
             &::-webkit-scrollbar-thumb {
-              background: var(--navmenu-color-light-mode);
-              border-radius: 10px;
+              display: none;
             }
 
             &::-webkit-scrollbar-track {
@@ -74,22 +79,23 @@
           }
 
           &__completed {
-            background-color: var(--navmenu-color-light-mode);
-            border-radius: 15px;
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
             &__header {
               font-size: 1.7rem;
               font-weight: 900;
             }
             &__tasks {
-              width: 100%;
-              height: 42.5vh;
-              overflow-y: scroll;
-              scrollbar-color: var(--navmenu-color-light-mode) transparent;
-              padding-right: 10px;
+              background-color: var(--navmenu-color-light-mode);
+              box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+              overflow-y: auto;
+              height: 25vh;
+              border-radius: 15px;
+              padding: 20px;
 
               &::-webkit-scrollbar-thumb {
-                background: var(--navmenu-color-light-mode);
-                border-radius: 10px;
+                display: none;
               }
 
               &::-webkit-scrollbar-track {
@@ -98,11 +104,10 @@
             }
           }
         }
-      }
-
-      .footer {
-        display: flex;
-        width: 100%;
+        .footer {
+          display: flex;
+          width: 100%;
+        }
       }
     }
   }

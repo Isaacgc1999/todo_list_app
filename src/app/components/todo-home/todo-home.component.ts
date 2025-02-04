@@ -25,6 +25,7 @@ export class TodoHomeComponent {
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
 
+    // localStorage.removeItem('completed_tasks');
     //to preserve tasks on page reload
     const storedTasks = localStorage.getItem('tasks');
     const storedCompletedTasks = localStorage.getItem('completed_tasks');

@@ -9,6 +9,22 @@
 
     &__content {
       font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    &__bin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--white-pure);
+      padding: 0.5rem;
+      cursor: pointer;
+
+      mat-icon {
+        color: var(--app-delete-task-button-color);
+      }
     }
   }
 }

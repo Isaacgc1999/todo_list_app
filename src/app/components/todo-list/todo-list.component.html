@@ -1,6 +1,11 @@
 <div class="todo-list">
   @for(task of tasks; track task.id){
-  <app-todo-item [ngClass]="{ 'slashed': showCompleted }" [task]="task"
+  @if(showCompleted){
+  <app-todo-item [completed]="true" [task]="task" [showBin]="true"
     (taskChecked)="onTaskToggled($event)"></app-todo-item>
+  }
+  @else{
+  <app-todo-item [task]="task" (taskChecked)="onTaskToggled($event)"></app-todo-item>
+  }
   }
 </div>
