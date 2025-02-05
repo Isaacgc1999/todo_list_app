@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
+import { Task } from '../../models/task.models';
 
 @Component({
   selector: 'app-todo-item',
@@ -19,10 +20,10 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
 })
 export class TodoItemComponent {
-  @Input() task!: { id: number; taskName: string };
+  @Input() task!: Task;
   @Input() showBin!: boolean;
   @Input() completed!: boolean;
-  @Output() taskChecked = new EventEmitter<{ id: number; taskName: string }>();
+  @Output() taskChecked = new EventEmitter<Task>();
   @Output() deletedTask = new EventEmitter<number>();
 
   onCheckboxChange(): void {

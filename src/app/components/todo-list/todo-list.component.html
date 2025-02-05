@@ -1,5 +1,5 @@
 <div class="todo-list">
-  @for(task of tasks; track task.id){
+  @for(task of reversedTasks; track task.id){
   @if(showCompleted){
   <app-todo-item [completed]="true" [task]="task" [showBin]="true" (taskChecked)="onTaskToggled($event)"
     (deletedTask)="onDeletedTask($event)"></app-todo-item>

@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { Task } from '../../models/task.models';
 import { TodoDarkmodeComponent } from '../todo-darkmode/todo-darkmode.component';
 import { TodoFooterInputComponent } from '../todo-footer-input/todo-footer-input.component';
 import { TodoListComponent } from '../todo-list/todo-list.component';
@@ -19,8 +20,8 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 })
 export class TodoHomeComponent {
   currentDateAndTime: string | null = null;
-  tasks: { id: number; taskName: string }[] = [];
-  completed_tasks: { id: number; taskName: string }[] = [];
+  tasks: Task[] = [];
+  completed_tasks: Task[] = [];
 
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
@@ -49,7 +50,7 @@ export class TodoHomeComponent {
     localStorage.setItem('lastTaskId', newId.toString());
   }
 
-  currentTaskChecked(task: { id: number; taskName: string }): void {
+  currentTaskChecked(task: Task): void {
     this.tasks = this.tasks.filter((t) => t.id !== task.id);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
 

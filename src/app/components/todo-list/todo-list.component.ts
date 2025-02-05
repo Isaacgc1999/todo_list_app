@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Task } from '../../models/task.models';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
@@ -10,19 +11,21 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
   standalone: true,
 })
 export class TodoListComponent {
-  @Input() tasks: { id: number; taskName: string }[] = [];
+  @Input() tasks: Task[] = [];
   @Input() showCompleted: boolean = false;
-  @Output() taskChecked = new EventEmitter<{ id: number; taskName: string }>();
+  @Output() taskChecked = new EventEmitter<Task>();
   @Output() taskDeleted = new EventEmitter<number>();
 
-  constructor() {}
-
-  onTaskToggled(task: { id: number; taskName: string }): void {
+  onTaskToggled(task: Task): void {
     this.taskChecked.emit(task);
   }
 
   onDeletedTask(taskId: number): void {
     console.log('Task with id ' + taskId + ' was deleted');
     this.taskDeleted.emit(taskId);
+  }
+
+  get reversedTasks(): Task[] {
+    return this.tasks.slice().reverse();
   }
 }
