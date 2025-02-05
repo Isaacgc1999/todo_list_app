@@ -51,14 +51,29 @@ export class TodoHomeComponent {
   }
 
   currentTaskChecked(task: Task): void {
-    this.tasks = this.tasks.filter((t) => t.id !== task.id);
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    if (task.completed) {
+      console.log('Task with id ' + task.id + ' was completed');
+      this.tasks = this.tasks.filter((t) => t.id !== task.id);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
 
-    this.completed_tasks.push(task);
-    localStorage.setItem(
-      'completed_tasks',
-      JSON.stringify(this.completed_tasks)
-    );
+      this.completed_tasks.push(task);
+      localStorage.setItem(
+        'completed_tasks',
+        JSON.stringify(this.completed_tasks)
+      );
+    } else {
+      console.log('Task with id ' + task.id + ' was NOT completed');
+      this.completed_tasks = this.completed_tasks.filter(
+        (t) => t.id !== task.id
+      );
+      localStorage.setItem(
+        'completed_tasks',
+        JSON.stringify(this.completed_tasks)
+      );
+
+      this.tasks.push(task);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
   }
 
   onDeletedTask(taskId: number): void {

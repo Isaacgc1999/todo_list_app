@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MatCheckboxChange,
+  MatCheckboxModule,
+} from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../../models/task.models';
 
@@ -26,9 +29,16 @@ export class TodoItemComponent {
   @Output() taskChecked = new EventEmitter<Task>();
   @Output() deletedTask = new EventEmitter<number>();
 
-  onCheckboxChange(): void {
+  onCheckboxChange(event: MatCheckboxChange): void {
     console.log('Task with id ' + this.task.id + ' was completed');
-    this.taskChecked.emit(this.task);
+    if (event.checked) {
+      this.task.completed = true;
+      this.taskChecked.emit(this.task);
+    } else if (!event.checked) {
+      this.task.completed = false;
+      this.taskChecked.emit(this.task);
+    }
+    console.log('the current task is: ', this.task);
   }
 
   onCardClick(): void {

@@ -26,7 +26,8 @@
                     </div>
                     <div class="body__completed__tasks">
                         <app-todo-list [showCompleted]="true" [tasks]="
-                            completed_tasks" (taskDeleted)="onDeletedTask($event)"></app-todo-list>
+                            completed_tasks" (taskDeleted)="onDeletedTask($event)"
+                            (taskChecked)="currentTaskChecked($event)"></app-todo-list>
                     </div>
                 </div>
             </div>
