@@ -1,9 +1,11 @@
 <div class="todo-item">
   <mat-card class="todo-item__card" appearance="outlined" (click)="onCardClick()">
-    <mat-checkbox (change)="onCheckboxChange()"></mat-checkbox>
-    <mat-card-content class="todo-item__card__content" [ngClass]="{ 'slashed': completed }">
-      {{task.taskName}}
-    </mat-card-content>
+    <div class="todo-item__card__content">
+      <mat-checkbox class="task-checkbox" (change)="onCheckboxChange()"></mat-checkbox>
+      <mat-card-content class="task-content" [ngClass]="{ 'slashed': completed }">
+        {{task.taskName}}
+      </mat-card-content>
+    </div>
     <div class="todo-item__card__bin">
       @if(showBin){
       <mat-icon (click)="onBinClick()">delete</mat-icon>

@@ -1,8 +1,8 @@
 <div class="todo-list">
   @for(task of tasks; track task.id){
   @if(showCompleted){
-  <app-todo-item [completed]="true" [task]="task" [showBin]="true"
-    (taskChecked)="onTaskToggled($event)"></app-todo-item>
+  <app-todo-item [completed]="true" [task]="task" [showBin]="true" (taskChecked)="onTaskToggled($event)"
+    (deletedTask)="onDeletedTask($event)"></app-todo-item>
   }
   @else{
   <app-todo-item [task]="task" (taskChecked)="onTaskToggled($event)"></app-todo-item>

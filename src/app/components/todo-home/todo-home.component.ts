@@ -59,4 +59,12 @@ export class TodoHomeComponent {
       JSON.stringify(this.completed_tasks)
     );
   }
+
+  onDeletedTask(taskId: number): void {
+    this.completed_tasks = this.completed_tasks.filter((t) => t.id !== taskId);
+    localStorage.setItem(
+      'completed_tasks',
+      JSON.stringify(this.completed_tasks)
+    );
+  }
 }

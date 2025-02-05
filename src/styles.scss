@@ -68,3 +68,22 @@ button:hover {
 .slashed {
   text-decoration: line-through;
 }
+
+.mat-mdc-card-content {
+  padding: 0;
+}
+
+.task-checkbox.mat-mdc-checkbox .mdc-checkbox__background {
+  border-color: black !important;
+}
+
+.task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
+  .mdc-checkbox__background {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+.task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
+  .mdc-checkbox__checkmark {
+  color: white !important;
+}

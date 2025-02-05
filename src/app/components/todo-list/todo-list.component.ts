@@ -13,10 +13,16 @@ export class TodoListComponent {
   @Input() tasks: { id: number; taskName: string }[] = [];
   @Input() showCompleted: boolean = false;
   @Output() taskChecked = new EventEmitter<{ id: number; taskName: string }>();
+  @Output() taskDeleted = new EventEmitter<number>();
 
   constructor() {}
 
   onTaskToggled(task: { id: number; taskName: string }): void {
     this.taskChecked.emit(task);
+  }
+
+  onDeletedTask(taskId: number): void {
+    console.log('Task with id ' + taskId + ' was deleted');
+    this.taskDeleted.emit(taskId);
   }
 }
