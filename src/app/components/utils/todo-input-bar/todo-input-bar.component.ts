@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-todo-input-bar',
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     FormsModule,

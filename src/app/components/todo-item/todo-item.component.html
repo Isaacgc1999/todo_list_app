@@ -3,7 +3,9 @@
     <div class="todo-item__card__content">
       <mat-checkbox class="task-checkbox" [checked]="completed" (change)="onCheckboxChange($event)"></mat-checkbox>
       <mat-card-content class="task-content" [ngClass]="{ 'slashed': completed }">
+        @if(task){
         {{task.taskName}}
+        }
       </mat-card-content>
     </div>
     <div class="todo-item__card__bin">
