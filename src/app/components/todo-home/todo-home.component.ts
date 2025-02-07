@@ -52,7 +52,6 @@ export class TodoHomeComponent {
 
   currentTaskChecked(task: Task): void {
     if (task.completed) {
-      console.log('Task with id ' + task.id + ' was completed');
       this.tasks = this.tasks.filter((t) => t.id !== task.id);
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
 
@@ -62,7 +61,6 @@ export class TodoHomeComponent {
         JSON.stringify(this.completed_tasks)
       );
     } else {
-      console.log('Task with id ' + task.id + ' was NOT completed');
       this.completed_tasks = this.completed_tasks.filter(
         (t) => t.id !== task.id
       );

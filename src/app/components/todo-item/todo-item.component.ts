@@ -30,7 +30,6 @@ export class TodoItemComponent {
   @Output() deletedTask = new EventEmitter<number>();
 
   onCheckboxChange(event: MatCheckboxChange): void {
-    console.log('Task with id ' + this.task.id + ' was completed');
     if (event.checked) {
       this.task.completed = true;
       this.taskChecked.emit(this.task);
@@ -38,7 +37,6 @@ export class TodoItemComponent {
       this.task.completed = false;
       this.taskChecked.emit(this.task);
     }
-    console.log('the current task is: ', this.task);
   }
 
   onCardClick(): void {
@@ -46,7 +44,6 @@ export class TodoItemComponent {
   }
 
   onBinClick(): void {
-    console.log('Task with id ' + this.task.id + ' was deleted');
     this.deletedTask.emit(this.task.id);
   }
 }

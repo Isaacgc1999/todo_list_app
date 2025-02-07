@@ -17,12 +17,10 @@ export class TodoListComponent {
   @Output() taskDeleted = new EventEmitter<number>();
 
   onTaskToggled(task: Task): void {
-    console.log('Task with id ' + task.id + ' was toggled');
     this.taskChecked.emit(task);
   }
 
   onDeletedTask(taskId: number): void {
-    console.log('Task with id ' + taskId + ' was deleted');
     this.taskDeleted.emit(taskId);
   }
 

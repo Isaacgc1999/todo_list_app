@@ -12,12 +12,6 @@
     margin: 0;
   }
 
-  ::ng-deep {
-    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-      background-color: var(--navmenu-color-light-mode);
-    }
-  }
-
   button {
     display: flex;
     align-items: center;
