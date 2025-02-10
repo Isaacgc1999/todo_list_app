@@ -10,6 +10,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
@@ -36,7 +37,7 @@ export class TodoInputBarComponent {
 
   constructor(private fb: FormBuilder) {
     this.todoForm = this.fb.group({
-      task: [''],
+      task: ['', Validators.required],
     });
   }
 

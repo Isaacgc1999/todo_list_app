@@ -21,4 +21,20 @@ describe('TodoInputBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should send the input value when the form is submitted', () => {
+    spyOn(component.task, 'emit');
+
+    const taskControl = component.todoForm.get('task');
+
+    const testTask = 'Test Task';
+    taskControl?.setValue(testTask);
+
+    expect(component.todoForm.valid).toBeTrue();
+
+    component.addTask();
+
+    expect(component.task.emit).toHaveBeenCalledWith(testTask);
+    expect(taskControl?.value).toBeNull();
+  });
 });
