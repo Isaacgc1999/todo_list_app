@@ -18,7 +18,7 @@
         <div class="main-box__group">
             <div class="body">
                 <div class="body__tasks">
-                    <app-todo-list [tasks]="tasks" (taskChecked)="currentTaskChecked($event)"></app-todo-list>
+                    <app-todo-list [tasks]="tasks" (taskChecked)="onCurrentTaskChecked($event)"></app-todo-list>
                 </div>
                 <div class="body__completed">
                     <div class="body__completed__header">
@@ -27,7 +27,7 @@
                     <div class="body__completed__tasks">
                         <app-todo-list [showCompleted]="true" [tasks]="
                             completed_tasks" (taskDeleted)="onDeletedTask($event)"
-                            (taskChecked)="currentTaskChecked($event)"></app-todo-list>
+                            (taskChecked)="onCurrentTaskChecked($event)"></app-todo-list>
                     </div>
                 </div>
             </div>

@@ -25,9 +25,11 @@ export class TodoHomeComponent {
 
   constructor(private datePipe: DatePipe) {
     this.currentDateAndTime = this.datePipe.transform(new Date());
-
-    // localStorage.removeItem('completed_tasks');
     //to preserve tasks on page reload
+    this.savedTasks();
+  }
+
+  savedTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
     const storedCompletedTasks = localStorage.getItem('completed_tasks');
 
@@ -46,14 +48,14 @@ export class TodoHomeComponent {
     };
 
     this.tasks.push(newTask);
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    this.setLocalStorageTasks(this.tasks);
     localStorage.setItem('lastTaskId', newId.toString());
   }
 
-  currentTaskChecked(task: Task): void {
+  onCurrentTaskChecked(task: Task): void {
     if (task.completed) {
       this.tasks = this.tasks.filter((t) => t.id !== task.id);
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      this.setLocalStorageTasks(this.tasks);
 
       this.completed_tasks.push(task);
       localStorage.setItem(
@@ -70,7 +72,7 @@ export class TodoHomeComponent {
       );
 
       this.tasks.push(task);
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      this.setLocalStorageTasks(this.tasks);
     }
   }
 
@@ -80,5 +82,9 @@ export class TodoHomeComponent {
       'completed_tasks',
       JSON.stringify(this.completed_tasks)
     );
+  }
+
+  setLocalStorageTasks(tasks: Task[]): void {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 }
