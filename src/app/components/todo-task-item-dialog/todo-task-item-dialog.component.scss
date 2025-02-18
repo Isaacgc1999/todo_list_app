@@ -1,0 +1,14 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    width: 90%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}

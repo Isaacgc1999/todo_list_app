@@ -1,0 +1,9 @@
+.text-field {
+  display: flex;
+  align-items: center;
+  width: 80%;
+
+  &__form-field {
+    max-width: 100%;
+  }
+}

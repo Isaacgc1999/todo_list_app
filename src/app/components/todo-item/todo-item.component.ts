@@ -9,7 +9,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../../models/task.models';
-import { TaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
+import { TodoTaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -41,18 +41,24 @@ export class TodoItemComponent {
     this.taskChecked.emit(this.task);
   }
 
-  onCardClick(): void {
+  onCardClick(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
     console.log('Task with id ' + this.task.id + ' was clicked');
-    const dialogRef = this.dialog.open(TaskItemDialogComponent, {
-      data: { id: this.task.id, name: this.task.taskName },
+    const dialogRef = this.dialog.open(TodoTaskItemDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: this.task,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      if (result !== undefined) {
-        this.task = result;
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log('The dialog was closed');
+    //   if (result !== undefined) {
+    //     this.task = result;
+    //   }
+    // });
   }
 
   onBinClick(): void {
