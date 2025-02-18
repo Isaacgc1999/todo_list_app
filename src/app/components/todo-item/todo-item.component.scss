@@ -8,6 +8,11 @@
     padding: 0.5rem;
     justify-content: space-between;
 
+    &:hover {
+      background-color: var(--app-task-onhover);
+      cursor: pointer;
+    }
+
     &__content {
       display: flex;
 

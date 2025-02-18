@@ -6,8 +6,10 @@ import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../../models/task.models';
+import { TaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -24,23 +26,33 @@ import { Task } from '../../models/task.models';
 })
 export class TodoItemComponent {
   @Input() task!: Task;
-  @Input() showBin!: boolean;
-  @Input() completed!: boolean;
+  @Input() showBin: boolean = false;
+  @Input() completed: boolean = false;
   @Output() taskChecked = new EventEmitter<Task>();
   @Output() deletedTask = new EventEmitter<number>();
 
+  constructor(private dialog: MatDialog) {}
+
   onCheckboxChange(event: MatCheckboxChange): void {
-    if (event.checked) {
-      this.task.completed = true;
-      this.taskChecked.emit(this.task);
-    } else if (!event.checked) {
-      this.task.completed = false;
-      this.taskChecked.emit(this.task);
-    }
+    this.task = {
+      ...this.task,
+      completed: event.checked,
+    };
+    this.taskChecked.emit(this.task);
   }
 
   onCardClick(): void {
     console.log('Task with id ' + this.task.id + ' was clicked');
+    const dialogRef = this.dialog.open(TaskItemDialogComponent, {
+      data: { id: this.task.id, name: this.task.taskName },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+        this.task = result;
+      }
+    });
   }
 
   onBinClick(): void {
