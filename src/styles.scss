@@ -74,7 +74,7 @@ button:hover {
 }
 
 .task-checkbox.mat-mdc-checkbox .mdc-checkbox__background {
-  border-color: black !important;
+  border-color: var(--app-sun-color) !important;
 }
 
 .task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
