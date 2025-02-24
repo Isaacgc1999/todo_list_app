@@ -83,6 +83,10 @@ button:hover {
   border-color: black !important;
 }
 
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--app-add-task-button-color) !important;
+}
+
 .task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
   .mdc-checkbox__checkmark {
   color: white !important;
