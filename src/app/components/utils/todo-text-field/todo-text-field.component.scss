@@ -1,9 +1,13 @@
 .text-field {
   display: flex;
   align-items: center;
-  width: 80%;
 
   &__form-field {
-    max-width: 100%;
+    textarea {
+      resize: none;
+      border: 2px solid;
+      border-radius: 5px;
+      height: 15rem;
+    }
   }
 }
