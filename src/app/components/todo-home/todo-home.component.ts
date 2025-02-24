@@ -39,12 +39,14 @@ export class TodoHomeComponent {
       : [];
   }
 
-  getTask(event: string): void {
+  addTask(event: string): void {
     let lastId = localStorage.getItem('lastTaskId');
     let newId = lastId ? parseInt(lastId, 10) + 1 : 1;
     const newTask = {
       id: newId,
       taskName: event,
+      completed: false,
+      created: new Date(),
     };
 
     this.tasks.push(newTask);
