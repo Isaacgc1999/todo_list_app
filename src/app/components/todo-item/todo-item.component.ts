@@ -45,13 +45,12 @@ export class TodoItemComponent {
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
-    console.log('Task with id ' + this.task.id + ' was clicked');
     const dialogRef = this.dialog.open(TodoTaskItemDialogComponent, {
       enterAnimationDuration,
       exitAnimationDuration,
       data: this.task,
-      minWidth: '700px',
-      minHeight: '500px',
+      minWidth: '500px',
+      minHeight: '400px',
     });
 
     // dialogRef.afterClosed().subscribe((result) => {

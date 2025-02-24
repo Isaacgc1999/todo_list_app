@@ -4,10 +4,13 @@
 
   &__form-field {
     textarea {
-      resize: none;
-      border: 2px solid;
-      border-radius: 5px;
-      height: 15rem;
+      resize: vertical;
+      min-height: 2rem;
+      max-height: 12rem;
+
+      &::-webkit-scrollbar-button {
+        display: none;
+      }
     }
   }
 }
