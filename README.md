@@ -1,27 +1,12 @@
-📝 **To-Do List App (IN PROGRESS)**
+# 📝 To-Do List App (IN PROGRESS)
 
-A simple but powerful Angular 19 to-do list application for managing daily tasks. 🚀 <br>
+A simple but powerful Angular 19 to-do list application for managing daily tasks. 🚀
 
--------------------------------------------------------------------------------------------------------------------------------
-
-📸 **Screenshots** <br>
-
-![image](https://github.com/user-attachments/assets/3d3c2bb8-8042-493e-a646-011b4f295a90)
-
-![image](https://github.com/user-attachments/assets/cc402add-c260-45d8-bf05-b75b96545963)
-
-
-
--------------------------------------------------------------------------------------------------------------------------------
-
-📚 **Project Description**
+# 📚 Project Description
 
 This application allows users to create, complete, and delete tasks. Users can mark tasks as completed, and the list stays organized and up-to-date.
 
--------------------------------------------------------------------------------------------------------------------------------
-
-⚙️ **Key Features
-**<br>
+# ⚙️ Key Features
 
 ✅ Add tasks with a simple form.
 
@@ -33,25 +18,20 @@ This application allows users to create, complete, and delete tasks. Users can m
 
 🌗 Dark / Light mode using a simple button.
 
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
 
-🚀 **Technologies Used**
+# 🚀 Technologies Used
 
-#### Frontend: Angular 19 (Standalone Components)
+Frontend: Angular 19 (Standalone Components)
 
-#### Styling: SCSS(SASS) / Angular Material
+Styling: SCSS(SASS) / Angular Material
 
-Additional Libraries: <br>
+Additional Libraries:
 
-rxjs for reactive state management.
+- rxjs for reactive state management.
 
-HttpClient for mock data handling. <br>
+- HttpClient for mock data handling. <br>
 
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
-
-📂 **Project Structure**
+# 📂 Project Structure
 
 ```
 src/
@@ -67,70 +47,58 @@ src/
 └── main.ts  # App bootstrap 
 ```
 
--------------------------------------------------------------------------------------------------------------------------------
+# 📸 Screenshots
 
-🚀 **Installation and Setup** <br>
+![image](https://github.com/user-attachments/assets/3d3c2bb8-8042-493e-a646-011b4f295a90)
 
-1. Clone the repository
+![image](https://github.com/user-attachments/assets/cc402add-c260-45d8-bf05-b75b96545963)
+
+# 🚀 Installation and Setup
+
+### 1. Clone the repository
    
-- #### git clone https://github.com/your-username/todo_list.git
+- git clone https://github.com/your-username/todo_list.git
 
--  #### cd todo_list
+- cd todo_list
 
-3. Install dependencies
+### 2. Install dependencies
    
-- #### npm install
+- npm install
 
-5. Run the application
+### 3. Run the application
    
-- #### ng serve --open <br>
+- ng serve --open
 
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
-
-📈 **Future Enhancements (Roadmap)** <br>
+# 📈 Future Enhancements (Roadmap)
 
 🔧 User authentication to save personalized tasks.
 
 🔍 Optional filters to display pending, completed, or all tasks. 
 
-📱 Responsive design for mobile devices. <br>
+📱 Responsive design for mobile devices.
 
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
+# 🤝 Contributions
 
-🤝 **Contributions** <br>
-
-Contributions are welcome! <br>
+Contributions are welcome!
 
 To contribute:
 
-- #### Fork the repository.
+- Fork the repository.
 
-- #### Create a new branch: git checkout -b feature/new-feature.
+- Create a new branch: git checkout -b feature/new-feature.
 
-- #### Make your changes and commit: git commit -m "Description of the new feature".
+- Make your changes and commit: git commit -m "Description of the new feature".
 
-- #### Push your changes: git push origin feature/new-feature.
+- Push your changes: git push origin feature/new-feature.
 
-- #### Create a Pull Request. <br>
+- Create a Pull Request. <br>
 
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
+# 📄 License
 
-📄 **License**
-
-This project is licensed under the Creative Commons License. <br>
-
--------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
-
-👨‍💻 **Contact** <br>
+This project is licensed under the Creative Commons License. 
 
 
-
-
-
+# 👨‍💻 Contact
 
 Developer: Isaac García
 
