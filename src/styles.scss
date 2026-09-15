@@ -1,13 +1,7 @@
 @use "@angular/material" as mat;
 @use "colors/colors.scss";
 @use "styles/tokens";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 
-// Material reads the design tokens instead of being overridden with !important.
-// `theme-type: color-scheme` makes it switch themes together with our tokens.
 html {
   @include mat.theme(
     (
@@ -74,7 +68,7 @@ body {
   margin: 0;
   padding: 0;
   font-weight: 400;
-  font-family: "Inter", serif;
+  font-family: var(--font);
 }
 
 .slashed {
