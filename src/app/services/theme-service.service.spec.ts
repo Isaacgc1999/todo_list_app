@@ -1,80 +1,79 @@
 import { TestBed } from '@angular/core/testing';
 
+import { THEME_STORAGE_KEY } from '../constants/theme.constants';
 import { ThemeService } from './theme-service.service';
 
 describe('ThemeService', () => {
-  let service: ThemeService;
+  const html = document.documentElement;
 
-  beforeEach(() => {
+  function createService(saved: string | null): ThemeService {
+    if (saved === null) {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    } else {
+      localStorage.setItem(THEME_STORAGE_KEY, saved);
+    }
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    return TestBed.inject(ThemeService);
+  }
+
+  afterEach(() => {
+    localStorage.removeItem(THEME_STORAGE_KEY);
+    html.style.colorScheme = '';
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(createService(null)).toBeTruthy();
   });
 
-  //setTheme
-  describe('setTheme', () => {
-    it('should update currentMode and localStorage', () => {
-      const setItemSpy = spyOn(localStorage, 'setItem');
-      const applyThemeSpy = spyOn(service, 'applyTheme');
+  //initial appearance
+  describe('initial appearance', () => {
+    it('should follow the system when nothing is saved', () => {
+      const service = createService(null);
 
-      service.setTheme('dark');
-
-      expect(service.currentMode).toBe('dark');
-      expect(setItemSpy).toHaveBeenCalledWith('theme', 'dark');
-      expect(applyThemeSpy).toHaveBeenCalledWith('dark');
-    });
-  });
-
-  //applyTheme
-  describe('applyTheme', () => {
-    it('should add "dark-mode" class and remove "light-mode" class for dark mode', () => {
-      const addSpy = spyOn(document.body.classList, 'add');
-      const removeSpy = spyOn(document.body.classList, 'remove');
-
-      service.applyTheme('dark');
-
-      expect(addSpy).toHaveBeenCalledWith('dark-mode');
-      expect(removeSpy).toHaveBeenCalledWith('light-mode');
+      expect(service.appearance()).toBe('system');
+      expect(html.style.colorScheme).toBe('light dark');
     });
 
-    it('should add "light-mode" class and remove "dark-mode" class for light mode', () => {
-      const addSpy = spyOn(document.body.classList, 'add');
-      const removeSpy = spyOn(document.body.classList, 'remove');
+    it('should restore a saved "dark" appearance', () => {
+      const service = createService('dark');
 
-      service.applyTheme('light');
+      expect(service.appearance()).toBe('dark');
+      expect(html.style.colorScheme).toBe('dark');
+    });
 
-      expect(addSpy).toHaveBeenCalledWith('light-mode');
-      expect(removeSpy).toHaveBeenCalledWith('dark-mode');
+    it('should restore a saved "light" appearance', () => {
+      const service = createService('light');
+
+      expect(service.appearance()).toBe('light');
+      expect(html.style.colorScheme).toBe('light');
+    });
+
+    it('should fall back to the system for an unknown saved value', () => {
+      const service = createService('purple');
+
+      expect(service.appearance()).toBe('system');
     });
   });
 
-  //initializeTheme
-  describe('initializeTheme', () => {
-    it('should set currentMode to "light" if localStorage is empty', () => {
-      spyOn(localStorage, 'getItem').and.returnValue(null);
+  //setAppearance
+  describe('setAppearance', () => {
+    it('should update the appearance, localStorage and color-scheme', () => {
+      const service = createService(null);
 
-      service.initializeTheme();
+      service.setAppearance('dark');
 
-      expect(service.currentMode).toBe('light');
+      expect(service.appearance()).toBe('dark');
+      expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('dark');
+      expect(html.style.colorScheme).toBe('dark');
     });
 
-    it('should set currentMode to "dark" if localStorage contains "dark"', () => {
-      spyOn(localStorage, 'getItem').and.returnValue('dark');
+    it('should let light-dark() follow the OS for "system"', () => {
+      const service = createService('dark');
 
-      service.initializeTheme();
+      service.setAppearance('system');
 
-      expect(service.currentMode).toBe('dark');
-    });
-
-    it('should set currentMode to "light" if localStorage contains "light"', () => {
-      spyOn(localStorage, 'getItem').and.returnValue('light');
-
-      service.initializeTheme();
-
-      expect(service.currentMode).toBe('light');
+      expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('system');
+      expect(html.style.colorScheme).toBe('light dark');
     });
   });
 });

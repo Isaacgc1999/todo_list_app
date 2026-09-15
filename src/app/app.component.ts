@@ -11,7 +11,5 @@ import { ThemeService } from './services/theme-service.service';
 export class AppComponent {
   title = 'todo-list-app';
 
-  constructor(public themeService: ThemeService) {
-    this.themeService.initializeTheme();
-  }
+  constructor(public themeService: ThemeService) {}
 }

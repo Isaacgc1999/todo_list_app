@@ -1,26 +1,15 @@
 <div class="bottom">
     <mat-nav-list>
-        <a mat-list-item (click)="toggleDarkMode($event)">
+        @for (option of options; track option.mode) {
+        <a mat-list-item [activated]="themeService.appearance() === option.mode"
+            (click)="selectAppearance(option.mode)">
             <div class="bottom__element">
-            <div class="bottom__element__icon">
-                <img src="/moon.png" width="25px" height="25px" alt="laptop" />
-            </div>
-            <div class="bottom__element__label">
-                Dark
-            </div>
+                <mat-icon class="bottom__element__icon" aria-hidden="true">{{ option.icon }}</mat-icon>
+                <div class="bottom__element__label">
+                    {{ option.label }}
+                </div>
             </div>
         </a>
-    
-        <a mat-list-item (click)="toggleDarkMode($event)">
-            <div class="bottom__element">
-                <div class="bottom__element__icon">
-                    <img src="/sun.png" width="25px" height="25px" alt="laptop" />
-                </div>
-                <div class="bottom__element__label">
-                    Light
-                </div>
-            </div>
-        </a>    
+        }
     </mat-nav-list>
 </div>
-

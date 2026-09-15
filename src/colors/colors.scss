@@ -1,7 +1,7 @@
 :root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --primary-color: #6200ee;
+  --background-color: light-dark(#ffffff, #000000);
+  --text-color: light-dark(#000000, #ffffff);
+  --primary-color: light-dark(#6200ee, #bb86fc);
 
   --app-font-black-color: #202020;
   --app-font-grey-color: #5e5e5e;
@@ -16,27 +16,14 @@
 
   --white-pure: #ffffff;
 
-  --main-color-light-mode: #cecece;
-  --navmenu-color-light-mode: #9f9e9e;
+  --main-color-light-mode: light-dark(#cecece, #131313);
+  --navmenu-color-light-mode: light-dark(#9f9e9e, #333333);
   --app-button-cancel: #cccccc;
   --app-button-background: #f9f9f9;
-  --app-sun-color: #000000;
-  --app-add-task-button-color: #9f9e9e;
-  --app-task-container-color: #9f9e9e;
-  --app-delete-task-button-color: #000000;
+  --app-sun-color: light-dark(#000000, #ffffff);
+  --app-add-task-button-color: light-dark(#9f9e9e, #333333);
+  --app-task-container-color: light-dark(#9f9e9e, #333333);
+  --app-delete-task-button-color: light-dark(#000000, #ffffff);
   --app-delete-task-button-hover-color: #9f9e9e;
-  --app-task-onhover: #bcbaba;
-}
-
-.dark-mode {
-  --background-color: #000000;
-  --main-color-light-mode: #131313;
-  --navmenu-color-light-mode: #333333;
-  --text-color: #ffffff;
-  --primary-color: #bb86fc;
-  --app-sun-color: #ffffff;
-  --app-add-task-button-color: #333333;
-  --app-task-container-color: #333333;
-  --app-delete-task-button-color: #ffffff;
-  --app-delete-task-button-hover-color: #9f9e9e;
+  --app-task-onhover: light-dark(#bcbaba, #262626);
 }

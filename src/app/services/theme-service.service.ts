@@ -1,31 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { APPEARANCES, THEME_STORAGE_KEY } from '../constants/theme.constants';
+import { Appearance } from '../models/appearance.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  currentMode: 'dark' | 'light' = 'light';
+  private readonly _appearance = signal<Appearance>(this.savedAppearance());
+  readonly appearance = this._appearance.asReadonly();
 
-  setTheme(mode: 'dark' | 'light'): void {
-    this.currentMode = mode;
-    localStorage.setItem('theme', mode);
-    this.applyTheme(mode);
+  constructor() {
+    this.applyAppearance(this._appearance());
   }
 
-  applyTheme(mode: 'dark' | 'light'): void {
-    if (mode === 'dark') {
-      document.body.classList.add('dark-mode');
-      document.body.classList.remove('light-mode');
-    } else {
-      document.body.classList.add('light-mode');
-      document.body.classList.remove('dark-mode');
-    }
+  setAppearance(mode: Appearance): void {
+    this._appearance.set(mode);
+    localStorage.setItem(THEME_STORAGE_KEY, mode);
+    this.applyAppearance(mode);
   }
 
-  initializeTheme(): void {
-    const savedMode = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    const mode =
-      savedMode === 'dark' || savedMode === 'light' ? savedMode : 'light';
-    this.setTheme(mode);
+  private applyAppearance(mode: Appearance): void {
+    // 'light dark' lets every light-dark() token follow the operating system
+    document.documentElement.style.colorScheme =
+      mode === 'system' ? 'light dark' : mode;
+  }
+
+  private savedAppearance(): Appearance {
+    const saved = localStorage.getItem(THEME_STORAGE_KEY);
+    return APPEARANCES.find((mode) => mode === saved) ?? 'system';
   }
 }
