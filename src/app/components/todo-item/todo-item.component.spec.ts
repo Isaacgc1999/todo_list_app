@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { Task } from '../../models/task.models';
+import { TodoTaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
 import { TodoItemComponent } from './todo-item.component';
 
 describe('TodoItemComponent', () => {
@@ -102,8 +104,9 @@ describe('TodoItemComponent', () => {
     expect(component.taskChecked.emit).toHaveBeenCalledWith(component.task);
   });
 
-  it('should log a message when a user clicks on a Task card', () => {
-    spyOn(console, 'log');
+  it('should open the task dialog when a user clicks on a Task card', () => {
+    const dialog = TestBed.inject(MatDialog);
+    spyOn(dialog, 'open');
 
     const testTask: Task = {
       id: 1,
@@ -113,10 +116,11 @@ describe('TodoItemComponent', () => {
 
     component.task = testTask;
 
-    component.onCardClick();
+    component.onCardClick('500ms', '500ms');
 
-    expect(console.log).toHaveBeenCalledWith(
-      'Task with id ' + component.task.id + ' was clicked'
+    expect(dialog.open).toHaveBeenCalledWith(
+      TodoTaskItemDialogComponent,
+      jasmine.objectContaining({ data: testTask })
     );
   });
 

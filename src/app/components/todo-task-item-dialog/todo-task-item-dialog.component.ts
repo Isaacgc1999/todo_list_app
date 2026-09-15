@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -10,7 +11,7 @@ import { TodoTextFieldComponent } from '../utils/todo-text-field/todo-text-field
 
 @Component({
   selector: 'app-todo-task-item-dialog',
-  imports: [TodoTextFieldComponent, MatDialogModule, DatePipe],
+  imports: [TodoTextFieldComponent, MatButtonModule, MatDialogModule, DatePipe],
   templateUrl: './todo-task-item-dialog.component.html',
   styleUrl: './todo-task-item-dialog.component.scss',
 })

@@ -1,9 +1,61 @@
+@use "@angular/material" as mat;
 @use "colors/colors.scss";
 @use "styles/tokens";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+// Material reads the design tokens instead of being overridden with !important.
+// `theme-type: color-scheme` makes it switch themes together with our tokens.
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$blue-palette,
+        theme-type: color-scheme,
+      ),
+      typography: (
+        plain-family: var(--font),
+        brand-family: var(--font),
+      ),
+      density: 0,
+    ),
+    (
+      primary: var(--accent),
+      on-primary: var(--on-accent),
+      surface: var(--surface),
+      surface-container-low: var(--surface),
+      surface-container-high: var(--surface),
+      on-surface: var(--label),
+      on-surface-variant: var(--label-2),
+      outline: var(--label-3),
+      corner-extra-large: var(--r-lg),
+    )
+  );
+
+  @include mat.checkbox-overrides(
+    (
+      selected-icon-color: var(--accent),
+      selected-hover-icon-color: var(--accent),
+      selected-focus-icon-color: var(--accent),
+      selected-pressed-icon-color: var(--accent),
+      selected-checkmark-color: var(--on-accent),
+      unselected-icon-color: var(--label-2),
+      unselected-hover-icon-color: var(--label),
+      unselected-focus-icon-color: var(--label),
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      filled-container-color: var(--fill),
+      filled-active-indicator-color: transparent,
+      filled-hover-active-indicator-color: transparent,
+      filled-focus-active-indicator-color: transparent,
+    )
+  );
+}
 
 html,
 body {
@@ -25,72 +77,8 @@ body {
   font-family: "Inter", serif;
 }
 
-button {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
-  height: 0 !important;
-}
-
-.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
-  border: none !important;
-  color: var(--text-color) !important;
-}
-
-.mat-mdc-card-content .card__content {
-  color: var(--text-color);
-}
-
-.mat-mdc-input-element
-  .todo-input-bar__input
-  .ng-pristine
-  .ng-valid
-  .mat-mdc-form-field-input-control
-  .mdc-text-field__input
-  .cdk-text-field-autofill-monitored
-  .ng-touched {
-  color: var(--navmenu-color-light-mode);
-}
-
-.mat-mdc-card-content:last-child {
-  padding: 0 !important;
-}
-
 .slashed {
   text-decoration: line-through;
-}
-
-.mat-mdc-card-content {
-  padding: 0;
-}
-
-.task-checkbox.mat-mdc-checkbox .mdc-checkbox__background {
-  border-color: var(--app-sun-color) !important;
-}
-
-.task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
-  .mdc-checkbox__background {
-  background-color: black !important;
-  border-color: black !important;
-}
-
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: var(--app-add-task-button-color) !important;
-}
-
-.task-checkbox.mat-mdc-checkbox.mat-mdc-checkbox-checked
-  .mdc-checkbox__checkmark {
-  color: white !important;
 }
 
 .mat-mdc-form-field-infix {

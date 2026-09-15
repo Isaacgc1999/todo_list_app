@@ -33,3 +33,7 @@
         align-items: center;
     }
 }
+
+:host-context(.dark-mode) .bottom__element__icon img{
+    filter: invert(1);
+}

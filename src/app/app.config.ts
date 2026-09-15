@@ -1,4 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
@@ -11,5 +12,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     DatePipe,
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { subscriptSizing: 'dynamic' },
+    },
   ],
 };
