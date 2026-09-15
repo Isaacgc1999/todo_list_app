@@ -1,18 +1,26 @@
-<div class="todo-item">
-  <mat-card class="todo-item__card" appearance="outlined" (click)="onCardClick('500ms', '500ms')">
-    <div class="todo-item__card__content">
-      <mat-checkbox class="task-checkbox" [checked]="completed" (change)="onCheckboxChange($event)"
-        (click)="$event.stopPropagation()"></mat-checkbox>
-      <mat-card-content class="task-content" [ngClass]="{ 'slashed': completed }">
-        @if(task){
-        {{task.taskName}}
-        }
-      </mat-card-content>
-    </div>
-    <div class="todo-item__card__bin">
-      @if(showBin){
-      <mat-icon (click)="onBinClick(); $event.stopPropagation()">delete</mat-icon>
+@if (task) {
+<div class="row" [class.is-done]="completed">
+  <button type="button" class="row__check" role="checkbox" [attr.aria-checked]="completed"
+    [attr.aria-label]="task.taskName" (click)="onToggle()">
+    <svg viewBox="0 0 12 12" aria-hidden="true">
+      <path d="M2.5 6.2 5 8.5l4.5-5" />
+    </svg>
+  </button>
+
+  <button type="button" class="row__body" (click)="openDetails()">
+    <span class="row__text">
+      <span class="row__title">{{ task.taskName }}</span>
+      @if (task.created) {
+      <span class="row__meta">Added {{ task.created | date: metaDateFormat }}</span>
       }
-    </div>
-  </mat-card>
+    </span>
+    <mat-icon class="row__chevron" aria-hidden="true">chevron_right</mat-icon>
+  </button>
+
+  @if (showBin) {
+  <button type="button" class="row__delete" [attr.aria-label]="'Delete ' + task.taskName" (click)="onBinClick()">
+    <mat-icon aria-hidden="true">delete</mat-icon>
+  </button>
+  }
 </div>
+}

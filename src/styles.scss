@@ -28,19 +28,6 @@ html {
     )
   );
 
-  @include mat.checkbox-overrides(
-    (
-      selected-icon-color: var(--accent),
-      selected-hover-icon-color: var(--accent),
-      selected-focus-icon-color: var(--accent),
-      selected-pressed-icon-color: var(--accent),
-      selected-checkmark-color: var(--on-accent),
-      unselected-icon-color: var(--label-2),
-      unselected-hover-icon-color: var(--label),
-      unselected-focus-icon-color: var(--label),
-    )
-  );
-
   @include mat.form-field-overrides(
     (
       filled-container-color: var(--fill),
@@ -69,10 +56,6 @@ body {
   padding: 0;
   font-weight: 400;
   font-family: var(--font);
-}
-
-.slashed {
-  text-decoration: line-through;
 }
 
 .mat-mdc-form-field-infix {
