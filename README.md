@@ -6,6 +6,10 @@ Angular 19 · Standalone components · Signals · Angular Material 3 · SCSS des
 
 This application allows users to create, complete, and delete tasks, with notes and creation dates saved per task. Every colour, spacing value and animation comes from a shared token system, so the whole app switches between Light, Dark and System appearance instantly, with no unstyled corners.
 
+## ⚽ Playground (run without installing anything)
+
+https://stackblitz.com/~/github.com/Isaacgc1999/todo_list_app
+
 ## What makes it interesting
 
 ✅ Add tasks from a composer pinned to the bottom of the screen — press **N** to jump to it from anywhere.
