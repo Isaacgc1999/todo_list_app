@@ -1,5 +1,11 @@
 .todo-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background-color: var(--surface);
+
+  &:empty {
+    display: none;
+  }
 }

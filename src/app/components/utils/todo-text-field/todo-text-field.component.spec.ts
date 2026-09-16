@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { TodoTextFieldComponent } from './todo-text-field.component';
 
 describe('TodoTextFieldComponent', () => {
@@ -8,7 +9,8 @@ describe('TodoTextFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodoTextFieldComponent]
+      imports: [TodoTextFieldComponent],
+      providers: [provideNoopAnimations()],
     })
     .compileComponents();
 

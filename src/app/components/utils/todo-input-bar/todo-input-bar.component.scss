@@ -1,24 +1,113 @@
-.todo-input-bar {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+:host {
+  display: block;
+}
 
-  &__form-field {
-    flex: 1;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+.composer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 6px 6px var(--space-4);
+  border-radius: var(--r-md);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 1px var(--separator);
+  transition: box-shadow var(--dur-quick) var(--ease-out);
+
+  &:focus-within {
+    box-shadow:
+      0 0 0 1px var(--accent),
+      0 0 0 4px var(--accent-tint);
+
+    .composer__hint {
+      display: none;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   &__input {
-    margin: 0;
+    flex: 1;
+    min-width: 0;
+    padding-block: 6px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--label);
+    font: inherit;
+    font-size: 16px;
+
+    &::placeholder {
+      color: var(--label-3);
+    }
   }
 
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 56px;
-    background-color: var(--app-add-task-button-color);
-    color: var(--white-pure);
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  &__hint {
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding-inline: 6px;
+    border-radius: var(--r-xs);
+    box-shadow: inset 0 0 0 1px var(--separator);
+    color: var(--label-2);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  &__add {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: var(--r-full);
+    background-color: var(--ink);
+    color: var(--on-ink);
+    cursor: pointer;
+    transition:
+      opacity var(--dur-quick) var(--ease-out),
+      transform var(--dur-quick) var(--ease-out);
+
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.92);
+    }
+
+    &:disabled {
+      opacity: 0.22;
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+}
+
+@media (hover: none) {
+  .composer__hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .composer,
+  .composer__add {
+    transition: none;
   }
 }

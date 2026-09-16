@@ -1,25 +1,17 @@
-import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import {
-  MatCheckboxChange,
-  MatCheckboxModule,
-} from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  TASK_DIALOG_CONFIG,
+  TASK_META_DATE_FORMAT,
+} from '../../constants/task.constants';
 import { Task } from '../../models/task.models';
 import { TodoTaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
 
 @Component({
   selector: 'app-todo-item',
-  imports: [
-    MatCardModule,
-    FormsModule,
-    MatCheckboxModule,
-    MatIcon,
-    CommonModule,
-  ],
+  imports: [DatePipe, MatIconModule],
   templateUrl: './todo-item.component.html',
   styleUrl: './todo-item.component.scss',
   standalone: true,
@@ -31,34 +23,23 @@ export class TodoItemComponent {
   @Output() taskChecked = new EventEmitter<Task>();
   @Output() deletedTask = new EventEmitter<number>();
 
+  readonly metaDateFormat = TASK_META_DATE_FORMAT;
+
   constructor(private dialog: MatDialog) {}
 
-  onCheckboxChange(event: MatCheckboxChange): void {
+  onToggle(): void {
     this.task = {
       ...this.task,
-      completed: event.checked,
+      completed: !this.completed,
     };
     this.taskChecked.emit(this.task);
   }
 
-  onCardClick(
-    enterAnimationDuration: string,
-    exitAnimationDuration: string
-  ): void {
-    const dialogRef = this.dialog.open(TodoTaskItemDialogComponent, {
-      enterAnimationDuration,
-      exitAnimationDuration,
+  openDetails(): void {
+    this.dialog.open(TodoTaskItemDialogComponent, {
+      ...TASK_DIALOG_CONFIG,
       data: this.task,
-      minWidth: '500px',
-      minHeight: '400px',
     });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log('The dialog was closed');
-    //   if (result !== undefined) {
-    //     this.task = result;
-    //   }
-    // });
   }
 
   onBinClick(): void {
