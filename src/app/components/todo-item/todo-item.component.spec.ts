@@ -1,8 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 
-import { MatDialog } from '@angular/material/dialog';
+import { TASK_COMPLETE_DELAY_MS } from '../../constants/task.constants';
 import { Task } from '../../models/task.models';
-import { TodoTaskItemDialogComponent } from '../todo-task-item-dialog/todo-task-item-dialog.component';
 import { TodoItemComponent } from './todo-item.component';
 
 describe('TodoItemComponent', () => {
@@ -68,7 +72,7 @@ describe('TodoItemComponent', () => {
     expect(typeof component.completed).toBe('boolean');
   });
 
-  it('should send the value of true in the property completed of a Task when a user toggle a Task', () => {
+  it('should send the value of true in the property completed of a Task after a short delay', fakeAsync(() => {
     spyOn(component.taskChecked, 'emit');
 
     const testTask: Task = {
@@ -82,12 +86,29 @@ describe('TodoItemComponent', () => {
 
     component.onToggle();
 
+    expect(component.checked).toBeTrue();
+    expect(component.taskChecked.emit).not.toHaveBeenCalled();
+
+    tick(TASK_COMPLETE_DELAY_MS);
+
     expect(component.task.completed).toBe(true);
-
     expect(component.taskChecked.emit).toHaveBeenCalledWith(component.task);
-  });
+  }));
 
-  it('should send the value of false in completed of a Task when a user toggle a Task', () => {
+  it('should cancel completing a Task when it is toggled again during the delay', fakeAsync(() => {
+    spyOn(component.taskChecked, 'emit');
+
+    component.task = { id: 1, taskName: 'Test Task', completed: false };
+
+    component.onToggle();
+    component.onToggle();
+    tick(TASK_COMPLETE_DELAY_MS);
+
+    expect(component.checked).toBeFalse();
+    expect(component.taskChecked.emit).not.toHaveBeenCalled();
+  }));
+
+  it('should send the value of false in completed of a Task right away', () => {
     spyOn(component.taskChecked, 'emit');
 
     const testTask: Task = {
@@ -106,9 +127,8 @@ describe('TodoItemComponent', () => {
     expect(component.taskChecked.emit).toHaveBeenCalledWith(component.task);
   });
 
-  it('should open the task dialog when a user opens the details of a Task', () => {
-    const dialog = TestBed.inject(MatDialog);
-    spyOn(dialog, 'open');
+  it('should ask to open the details of a Task', () => {
+    spyOn(component.detailsRequested, 'emit');
 
     const testTask: Task = {
       id: 1,
@@ -120,10 +140,7 @@ describe('TodoItemComponent', () => {
 
     component.openDetails();
 
-    expect(dialog.open).toHaveBeenCalledWith(
-      TodoTaskItemDialogComponent,
-      jasmine.objectContaining({ data: testTask })
-    );
+    expect(component.detailsRequested.emit).toHaveBeenCalledWith(testTask);
   });
 
   it('should emit the id of a Task when a user clicks on the bin icon', () => {
@@ -172,23 +189,27 @@ describe('TodoItemComponent', () => {
       expect(query('.row')!.classList).toContain('is-done');
     });
 
-    it('should toggle the task when the check is clicked', () => {
+    it('should show the check as ticked as soon as it is clicked', fakeAsync(() => {
       spyOn(component.taskChecked, 'emit');
 
       query('[role="checkbox"]')!.click();
+      fixture.detectChanges();
+
+      expect(query('.row')!.classList).toContain('is-done');
+
+      tick(TASK_COMPLETE_DELAY_MS);
 
       expect(component.taskChecked.emit).toHaveBeenCalledWith(
         jasmine.objectContaining({ id: 1, completed: true })
       );
-    });
+    }));
 
-    it('should open the details when the row is clicked', () => {
-      const dialog = TestBed.inject(MatDialog);
-      spyOn(dialog, 'open');
+    it('should ask for the details when the row is clicked', () => {
+      spyOn(component.detailsRequested, 'emit');
 
       query('.row__body')!.click();
 
-      expect(dialog.open).toHaveBeenCalled();
+      expect(component.detailsRequested.emit).toHaveBeenCalledWith(testTask);
     });
 
     it('should show when the task was added', () => {

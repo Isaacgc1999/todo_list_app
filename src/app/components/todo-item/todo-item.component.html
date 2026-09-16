@@ -1,6 +1,6 @@
 @if (task) {
-<div class="row" [class.is-done]="completed">
-  <button type="button" class="row__check" role="checkbox" [attr.aria-checked]="completed"
+<div class="row" [class.is-done]="checked">
+  <button type="button" class="row__check" role="checkbox" [attr.aria-checked]="checked"
     [attr.aria-label]="task.taskName" (click)="onToggle()">
     <svg viewBox="0 0 12 12" aria-hidden="true">
       <path d="M2.5 6.2 5 8.5l4.5-5" />
