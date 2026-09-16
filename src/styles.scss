@@ -1,5 +1,4 @@
 @use "@angular/material" as mat;
-@use "colors/colors.scss";
 @use "styles/tokens";
 
 html {
@@ -28,12 +27,12 @@ html {
     )
   );
 
-  @include mat.form-field-overrides(
+  @include mat.snack-bar-overrides(
     (
-      filled-container-color: var(--fill),
-      filled-active-indicator-color: transparent,
-      filled-hover-active-indicator-color: transparent,
-      filled-focus-active-indicator-color: transparent,
+      container-color: var(--ink),
+      container-shape: var(--r-full),
+      supporting-text-color: var(--on-ink),
+      button-color: var(--accent-on-ink),
     )
   );
 }
@@ -50,14 +49,48 @@ h3 {
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--bg);
+  color: var(--label);
   margin: 0;
   padding: 0;
   font-weight: 400;
   font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
 }
 
-.mat-mdc-form-field-infix {
-  width: 0;
+.task-details-panel {
+  @include mat.dialog-overrides(
+    (
+      container-shape: 0,
+      container-color: var(--bg),
+    )
+  );
+}
+
+.task-details-sheet {
+  @include mat.bottom-sheet-overrides(
+    (
+      container-shape: var(--r-lg),
+      container-background-color: var(--bg),
+      container-text-color: var(--label),
+    )
+  );
+}
+
+.task-details-sheet.mat-bottom-sheet-container,
+.task-details-sheet .mat-bottom-sheet-container {
+  padding: 0;
+}
+
+.mat-mdc-snack-bar-container.undo-toast {
+  margin-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--label-2);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }

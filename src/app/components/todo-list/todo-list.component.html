@@ -1,6 +1,7 @@
-<div class="todo-list" role="list">
+<div class="todo-list" role="list" [@.disabled]="animationsDisabled">
   @for (task of reversedTasks; track task.id) {
-  <app-todo-item role="listitem" [task]="task" [completed]="showCompleted" [showBin]="showCompleted"
-    (taskChecked)="onTaskToggled($event)" (deletedTask)="onDeletedTask($event)"></app-todo-item>
+  <app-todo-item @row role="listitem" [task]="task" [completed]="showCompleted" [showBin]="showCompleted"
+    (taskChecked)="onTaskToggled($event)" (deletedTask)="onDeletedTask($event)"
+    (detailsRequested)="onTaskOpened($event)"></app-todo-item>
   }
 </div>

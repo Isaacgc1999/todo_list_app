@@ -1,16 +1,38 @@
-<div class="dialog">
-  <div class="dialog__title">
-    <h2 mat-dialog-title>{{data.taskName}}</h2>
-  </div>
-  <mat-dialog-content class="dialog__content">
-    <span>Description</span>
-    <app-todo-text-field (description)="getDescription($event)"></app-todo-text-field>
-  </mat-dialog-content>
-  <div class="dialog__footer" mat-dialog-actions>
-    <div class="dialog__footer__buttons">
-      <button mat-button (click)="onCancel()">Cancelar</button>
-      <button mat-button color="primary" (click)="onSave()">Guardar</button>
+<div class="details">
+  @if (isSheet) {
+  <div class="details__grabber" aria-hidden="true"></div>
+  }
+
+  <header class="details__nav">
+    <button type="button" class="details__nav-button" (click)="onCancel()">Cancel</button>
+    <h2 class="details__heading" [id]="headingId">Details</h2>
+    <button type="button" class="details__nav-button details__nav-button--primary" [disabled]="!canSave"
+      (click)="onDone()">Done</button>
+  </header>
+
+  <div class="details__body">
+    <div class="details__group details__group--fields">
+      <label class="details__label" for="task-details-name">Task name</label>
+      <input id="task-details-name" class="details__name" type="text" autocomplete="off" [(ngModel)]="taskName"
+        (keydown.enter)="onDone()" />
+      <label class="details__label" for="task-details-notes">Notes</label>
+      <textarea id="task-details-notes" class="details__notes" rows="4" placeholder="Add a note"
+        [(ngModel)]="description"></textarea>
     </div>
-    <span class="dialog__footer__date">Created On: {{data.created | date: 'short'}}</span>
+
+    <div class="details__group">
+      <div class="details__info">
+        <span>Status</span>
+        <span>{{ data.completed ? 'Completed' : 'Open' }}</span>
+      </div>
+      @if (data.created) {
+      <div class="details__info">
+        <span>Created</span>
+        <span>{{ data.created | date: createdDateFormat }}</span>
+      </div>
+      }
+    </div>
+
+    <button type="button" class="details__delete" (click)="onDelete()">Delete task</button>
   </div>
 </div>

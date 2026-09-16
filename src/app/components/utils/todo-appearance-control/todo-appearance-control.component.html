@@ -1,0 +1,10 @@
+<div class="segmented" role="radiogroup" aria-label="Appearance">
+  @for (option of options; track option.mode; let index = $index) {
+  <button #segment type="button" role="radio" class="segmented__option"
+    [attr.aria-checked]="themeService.appearance() === option.mode"
+    [tabIndex]="themeService.appearance() === option.mode ? 0 : -1" (click)="selectAppearance(option.mode)"
+    (keydown)="onKeydown($event, index)">
+    {{ option.label }}
+  </button>
+  }
+</div>

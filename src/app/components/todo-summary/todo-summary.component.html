@@ -1,0 +1,15 @@
+<section class="summary" aria-label="Progress" [class.summary--complete]="totalCount && !openCount">
+  <div>
+    <p class="eyebrow">Completed</p>
+    <p class="summary__figure">
+      {{ completedCount }}<span class="summary__of">/{{ totalCount }}</span>
+    </p>
+  </div>
+  <div class="summary__side">
+    <p class="summary__note">{{ openCount ? openCount + ' open' : 'All clear' }}</p>
+    <div class="summary__bar" role="progressbar" aria-label="Completed tasks" aria-valuemin="0"
+      [attr.aria-valuemax]="totalCount" [attr.aria-valuenow]="completedCount">
+      <span class="summary__fill" [style.width.%]="progress"></span>
+    </div>
+  </div>
+</section>

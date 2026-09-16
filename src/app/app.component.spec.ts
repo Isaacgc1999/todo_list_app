@@ -1,18 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { BottomMenuOverviewComponent } from './components/todo-darkmode/bottom-menu-overview/bottom-menu-overview.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     localStorage.clear();
     await TestBed.configureTestingModule({
-      imports: [
-        AppComponent,
-        BrowserAnimationsModule,
-        BottomMenuOverviewComponent,
-      ],
-      providers: [BottomMenuOverviewComponent],
+      imports: [AppComponent, BrowserAnimationsModule],
     }).compileComponents();
   });
 

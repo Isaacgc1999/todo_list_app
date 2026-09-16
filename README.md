@@ -2,11 +2,11 @@
 
 A to-do app for the browser, rebuilt around its own design system: Apple's layered surfaces, Trade Republic's black-and-white restraint, and Revolut's big, readable numbers. 🚀
 
-# 📚 Project Description
+Angular 19 · Standalone components · Signals · Angular Material 3 · SCSS design tokens · 77 unit tests
 
 This application allows users to create, complete, and delete tasks, with notes and creation dates saved per task. Every colour, spacing value and animation comes from a shared token system, so the whole app switches between Light, Dark and System appearance instantly, with no unstyled corners.
 
-# ⚙️ Key Features
+## What makes it interesting
 
 ✅ Add tasks from a composer pinned to the bottom of the screen — press **N** to jump to it from anywhere.
 
@@ -36,15 +36,15 @@ The interface is driven by a token system in `src/styles/_tokens.scss`, using th
 - **Type:** the system font (SF Pro on Apple devices), with [Geist](https://fonts.google.com/specimen/Geist) as the web fallback.
 - **Angular Material is themed, not fought:** Material reads the same tokens through `mat.theme()`, so the app has zero `!important` overrides.
 
-# 🚀 Technologies Used
+## Screenshots
 
 Frontend: Angular 19 (Standalone Components, Signals)
 
 Styling: SCSS design tokens / Angular Material 3 (theme-type: color-scheme)
 
-Additional Libraries:
+![Task details open as a side panel](docs/screenshots/desktop-details.png)
 
-- rxjs for reactive state management.
+On a phone the same screens become a single column, and the details arrive as a bottom sheet:
 
 - Angular CDK for responsive breakpoints. <br>
 
@@ -69,7 +69,7 @@ src/
 └── _tokens.scss      # The design tokens (colors, spacing, radius, motion)
 
 
-# 📸 Screenshots
+The first version worked, but it was three greys stacked on top of each other, with the same drop shadow on every surface.
 
 ### Light & Dark
 
@@ -101,7 +101,7 @@ Details open beside the list on desktop, and as a bottom sheet on mobile:
 
 </details>
 
-# 🚀 Installation and Setup
+![The original dark theme](https://github.com/user-attachments/assets/cc402add-c260-45d8-bf05-b75b96545963)
 
 ### 1. Clone the repository
    
@@ -109,9 +109,15 @@ Details open beside the list on desktop, and as a bottom sheet on mobile:
 
 - cd todo_list_app
 
-### 2. Install dependencies
-   
-- npm install
+| Before | After |
+| --- | --- |
+| 24 colour variables, 12 of them unused, some renamed per theme | ~40 role-named tokens, each defined once for both themes |
+| 9 `!important` rules overriding Material's internals | 0, replaced by `mat.theme()` and token overrides |
+| 5 font families loaded, 2 actually used | 1 family: the system font, with Geist as a fallback |
+| Fixed 15% / 85% split at every screen size | Sidebar at 900px and up, single column below |
+| A theme toggle that picked the wrong mode when you clicked the icon | Light / Dark / System, with the system as the default |
+| No undo, and a details dialog that never saved | Undo on completing and deleting, and details that save |
+| 716 kB initial bundle | 588 kB |
 
 ### 3. Run the application
    
@@ -131,39 +137,74 @@ Details open beside the list on desktop, and as a bottom sheet on mobile:
 | Tab | Move through rows; every control shows a focus ring |
 | ← → | Move between Light, Dark and System |
 
-# 📈 Future Enhancements (Roadmap)
+| Token | Light | Dark | Used for |
+| --- | --- | --- | --- |
+| `--bg` | `#f2f2f7` | `#000000` | The ground behind the grouped lists |
+| `--surface` | `#ffffff` | `#1c1c1e` | Rows, cards, the composer, sheets |
+| `--label` / `--label-2` | `#0b0b0f` / `#6c6c74` | `#f5f5f7` / `#a1a1a8` | Task names, then dates and counts |
+| `--accent` | `#2b5cf5` | `#6e8eff` | Only ever state: checked, selected, focused |
+| `--ink` | `#0b0b0f` | `#f5f5f7` | The main action on a screen, and toasts |
+| `--success` / `--danger` | `#1f9d55` / `#e0383e` | `#3dd37a` / `#ff6961` | All done, and destructive actions |
 
-🔧 User authentication to save personalized tasks.
+Type is the system font, so SF Pro on a Mac or an iPhone, with [Geist](https://fonts.google.com/specimen/Geist) as the fallback everywhere else. Numbers use tabular figures so they don't jitter as they change.
 
-🔍 Optional filters to display pending, completed, or all tasks. 
+## Keyboard
 
 📅 Due dates and reminders (the design already reserves a warning colour for this).
 
 📋 Multiple lists, with the sidebar becoming real navigation.
 
-# 🤝 Contributions
+## How it is put together
 
-Contributions are welcome!
+```
+src/
+├── app/
+│   ├── animations/     Row enter and leave animation
+│   ├── components/
+│   │   ├── todo-home/              Layout, sidebar, sections, undo toasts
+│   │   ├── todo-list/              Grouped list
+│   │   ├── todo-item/              Task row with its circular check
+│   │   ├── todo-summary/           Progress card
+│   │   ├── todo-task-item-dialog/  Task details, as a panel or a sheet
+│   │   ├── todo-footer-input/      Composer wrapper
+│   │   └── utils/                  Composer, appearance control
+│   ├── constants/      Storage keys, date formats, timings, dialog configs
+│   ├── models/         Task, appearance and details types
+│   └── services/       Appearance, and opening the task details
+└── styles/
+    └── _tokens.scss    The design tokens
+```
 
-To contribute:
+Two rules keep this tidy: types live in `models/` and constants in `constants/`, so components only ever reference them; and no component hard-codes a colour, a spacing value or a duration.
 
-- Fork the repository.
+Tasks are kept in `localStorage`, so there is no backend to run.
 
-- Create a new branch: git checkout -b feature/new-feature.
+## Running it
 
-- Make your changes and commit: git commit -m "Description of the new feature".
+```bash
+git clone https://github.com/Isaacgc1999/todo_list_app.git
+cd todo_list_app
+npm install
+npm start
+```
 
-- Push your changes: git push origin feature/new-feature.
+Then open http://localhost:4200.
 
-- Create a Pull Request. <br>
+```bash
+npm test          # 77 unit tests in Karma and Jasmine
+npm run build     # production build
+```
 
-# 📄 License
+## What could come next
 
-This project is licensed under the Creative Commons License. 
+- Due dates and reminders. The warning colour is already reserved in the tokens.
+- Several lists, with the sidebar becoming real navigation.
+- A backend, so tasks follow you between devices.
 
+## Licence
 
-# 👨‍💻 Contact
+Released under [CC0 1.0 Universal](LICENSE): public domain, do what you like with it.
 
-Developer: Isaac García
+## Contact
 
-📧 Email: isaactraba@gmail.com
+Isaac García — [@Isaacgc1999](https://github.com/Isaacgc1999) — isaactraba@gmail.com

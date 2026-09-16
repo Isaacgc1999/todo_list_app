@@ -1,38 +1,79 @@
-<div class="todo-home">
-    <div class="left-menu">
-        <div class="left-menu__top">
-            <div class="left-menu__header">
-                <div class="left-menu__header__title">
-                    My Todo List
-                </div>
-                <div class="left-menu__header__date">
-                    {{currentDateAndTime | date : 'EEEE d MMMM' }}
-                </div>
-            </div>
-        </div>
-        <div class="left-menu__bottom">
-            <app-todo-darkmode></app-todo-darkmode>
-        </div>
+<div class="home">
+  <aside class="sidebar">
+    <p class="sidebar__title">My Todo List</p>
+
+    <nav class="sidebar__nav" aria-label="Sections">
+      <button type="button" class="sidebar__link" (click)="scrollToSection('open-section')">
+        <mat-icon aria-hidden="true">radio_button_unchecked</mat-icon>
+        Open
+        <span class="sidebar__count">{{ tasks.length }}</span>
+      </button>
+      <button type="button" class="sidebar__link" [disabled]="!completed_tasks.length"
+        (click)="scrollToSection('completed-section')">
+        <mat-icon aria-hidden="true">check_circle</mat-icon>
+        Completed
+        <span class="sidebar__count">{{ completed_tasks.length }}</span>
+      </button>
+    </nav>
+
+    <div class="sidebar__appearance">
+      <span class="eyebrow">Appearance</span>
+      <app-todo-appearance-control></app-todo-appearance-control>
     </div>
-    <div class="main-box">
-        <div class="main-box__group">
-            <div class="body">
-                <div class="body__tasks">
-                    <app-todo-list [tasks]="tasks" (taskChecked)="onCurrentTaskChecked($event)"></app-todo-list>
-                </div>
-                <div class="body__completed">
-                    <div class="body__completed__header">
-                        Completed Tasks
-                    </div>
-                    <div class="body__completed__tasks">
-                        <app-todo-list [showCompleted]="true" [tasks]="
-                            completed_tasks" (taskDeleted)="onDeletedTask($event)"
-                            (taskChecked)="onCurrentTaskChecked($event)"></app-todo-list>
-                    </div>
-                </div>
-            </div>
-            <div class="footer">
-                <app-todo-footer-input (task)="addTask($event)"></app-todo-footer-input>
-            </div>
-        </div>
+  </aside>
+
+  <main class="main">
+    <div class="main__scroll">
+      <div class="main__content">
+        <header class="page-header">
+          <div>
+            <h1 class="page-header__title">{{ today | date: titleDateFormat }}</h1>
+            <p class="page-header__date">{{ today | date: subtitleDateFormat }}</p>
+          </div>
+          <app-todo-appearance-control class="page-header__appearance"></app-todo-appearance-control>
+        </header>
+
+        @if (totalCount) {
+        <app-todo-summary [openCount]="tasks.length" [completedCount]="completed_tasks.length"></app-todo-summary>
+        }
+
+        <section id="open-section" class="section" aria-labelledby="open-heading">
+          <h2 id="open-heading" class="section__head">
+            <span>Open</span>
+            <span class="section__count">{{ tasks.length }}</span>
+          </h2>
+          @if (tasks.length) {
+          <app-todo-list [tasks]="tasks" (taskChecked)="onCurrentTaskChecked($event)"
+            (taskOpened)="onTaskOpened($event)"></app-todo-list>
+          } @else {
+          <div class="empty">
+            <div class="empty__mark" aria-hidden="true"><mat-icon>check</mat-icon></div>
+            <p class="empty__title">{{ totalCount ? 'Nothing left to do' : 'No tasks yet' }}</p>
+            <p class="empty__text">Add a task below, or press <kbd>{{ shortcutKey | uppercase }}</kbd>.</p>
+          </div>
+          }
+        </section>
+
+        @if (completed_tasks.length) {
+        <section id="completed-section" class="section" aria-labelledby="completed-heading">
+          <h2 id="completed-heading" class="section__head">
+            <button type="button" class="section__toggle" aria-controls="completed-list"
+              [attr.aria-expanded]="completedExpanded" (click)="toggleCompleted()">
+              <mat-icon aria-hidden="true">expand_more</mat-icon>
+              Completed
+            </button>
+            <span class="section__count">{{ completed_tasks.length }}</span>
+          </h2>
+          <app-todo-list id="completed-list" [hidden]="!completedExpanded" [showCompleted]="true"
+            [tasks]="completed_tasks" (taskChecked)="onCurrentTaskChecked($event)"
+            (taskDeleted)="onDeletedTask($event)" (taskOpened)="onTaskOpened($event)"></app-todo-list>
+        </section>
+        }
+      </div>
     </div>
+
+    <div class="main__footer">
+      <app-todo-footer-input class="main__composer" (task)="addTask($event)"></app-todo-footer-input>
+    </div>
+  </main>
+</div>

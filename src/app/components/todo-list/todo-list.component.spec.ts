@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { Task } from '../../models/task.models';
 import { TodoListComponent } from './todo-list.component';
 
@@ -10,6 +11,7 @@ describe('TodoListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TodoListComponent],
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoListComponent);
@@ -109,6 +111,18 @@ describe('TodoListComponent', () => {
     expect(component.taskDeleted.emit).toHaveBeenCalledWith(
       component.tasks[0].id
     );
+  });
+
+  it('should pass on a request to open the details of a Task', () => {
+    spyOn(component.taskOpened, 'emit');
+
+    const testTask: Task = { id: 1, taskName: 'Test Task', completed: false };
+    fixture.componentRef.setInput('tasks', [testTask]);
+    fixture.detectChanges();
+
+    fixture.nativeElement.querySelector('.row__body').click();
+
+    expect(component.taskOpened.emit).toHaveBeenCalledWith(testTask);
   });
 
   it('should return the tasks array reversed', () => {
